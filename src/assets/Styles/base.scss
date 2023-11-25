@@ -1,0 +1,33 @@
+// Define variables
+$primary-color: #957443;
+$secondary-color: #635a55;
+
+$font-size-12: 12px;
+$font-size-16: 16px;
+$font-size-20: 20px;
+$font-size-24: 24px;
+
+
+/* Mobile devices */
+@media only screen and (max-width: 767px) {
+    $font-size-12: 12px;
+    $font-size-16: 16px;
+    $font-size-20: 20px;
+    $font-size-24: 24px;
+  }
+  
+  /* Tablets */
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    $font-size-12: 16px;
+    $font-size-16: 20px;
+    $font-size-20: 24px;
+    $font-size-24: 28px;
+  }
+  
+  /* Desktops and larger screens */
+  @media only screen and (min-width: 1024px) {
+    $font-size-12: 16px;
+    $font-size-16: 20px;
+    $font-size-20: 24px;
+    $font-size-24: 28px;
+  }

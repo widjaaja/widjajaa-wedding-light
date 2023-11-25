@@ -1,0 +1,102 @@
+
+.HomeContainer {
+    width: auto;
+    height: calc(100dvh - 64px);
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    background-color: #FBF5F2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    .WidgetContainer {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        .bgMain {
+            background-size: cover;
+            background-image: url("../../assets/Images/bg-main-0.webp");
+            width: 100%;
+            height: 100%;
+        }
+        .populated {
+            position: absolute;
+            margin: 0;
+            display: flex;
+            flex: 1 1;
+            width: 100%;
+            height: 100%;
+            .widgetWrap {
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                align-items: center;
+                position: relative;
+                width: 100%;
+                padding: 2rem;
+                margin: auto;
+                bottom: 50px;
+                h4 {
+                    font-size: 1rem;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                    line-height: 1em;
+                    letter-spacing: 2px;
+                    color: #635a55;
+                    margin-bottom: 2rem;
+                }
+                p {
+                    text-align: center;
+                    font-size: 1rem;
+                    font-weight: normal;
+                    text-transform: uppercase;
+                    font-style: italic;
+                    color: #635a55;
+                    margin-top: 2rem;
+                }
+                span {
+                    font-family: "Corinthia", Sans-serif;
+                    font-size: 3.5rem;
+                    line-height: 0.75;
+                    font-weight: normal;
+                    color: #635a55;
+                    padding: 0;
+                    margin: 0;
+                    &.male {
+                        margin-left: -70px;
+                    }
+                    &.female {
+                        margin-left: 70px;
+                    }
+                    &.sym {
+                        font-size: 2rem !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 767px) {
+    .HomeContainer {
+        width: 100% !important;
+    }
+}
+  
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .HomeContainer {
+        width: 100% !important;
+    }
+}
+
+/* Desktops and larger screens */
+@media only screen and (min-width: 1024px) {
+    .HomeContainer {
+        width: 480px !important;
+    }
+}

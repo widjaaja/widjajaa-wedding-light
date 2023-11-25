@@ -1,0 +1,169 @@
+aside {
+    position: sticky;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: calc(100% - 480px);
+    height: 100dvh;
+    z-index: 100;
+    top: 0;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+
+    .widgetWrap {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        padding-bottom: 3rem;
+        margin: auto;
+        z-index: 100;
+        user-select: none;
+        h3 {
+            font-family: "Corinthia", Sans-serif;
+            font-size: 4rem;
+            font-weight: normal;
+            line-height: 1.3em;
+            color: #957443;
+            margin: 0px;
+            margin-bottom: 1rem;
+        }
+        .description {
+            font-size: 1rem;
+            line-height: 1.4em;
+            color: #635a55;
+        }
+        .guest {
+            color: #635a55;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4em;
+        }
+        .buttonContent {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          min-height: 40px;
+        }
+        button {
+            background-color: #B69889;
+            border-radius: .5rem;
+            box-shadow: 0px 0px 5px 0px #B69889;
+            padding: .5rem 1.5rem;
+            border: none;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            &::before, &::after{
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              transition: all 0.5s ease;
+              border-radius: .5rem;
+            }
+
+            i {
+              font-size: 1rem;
+              position: relative;
+              color: #FBF5F2;
+              margin-right: .5rem;
+              transition: all 0.5s ease;
+            }
+            span {
+              font-size: 1rem;
+              align-self: center;
+              position: relative;
+              color: #FBF5F2;
+              letter-spacing: 1px;
+            }
+            &:hover {
+              border: 1px solid #B69889;
+              i {
+                color: #B69889 !important;
+              }
+              span {
+                color: #B69889 !important;
+              }
+              
+            }
+        }
+        .btnExpand{
+          &::after{     
+            border-radius: .5rem;
+            box-shadow: inset 0 0 0 0px #B69889;
+          }
+          &::before{
+            border-radius: .5rem;
+            background: #ECE4DF;
+            box-shadow: inset 0 0 0 60px #B69889;
+          }
+          &:hover::before{
+            border-radius: unset;
+            color: #B69889 !important;
+            box-shadow: inset 0 0 0 0px #B69889;
+          }
+        }
+    }
+    span {
+        font-size: 14px;
+        text-align: center;
+        color: #635a55;
+        line-height: 1.4em;
+        letter-spacing: 1px;
+        max-width: 380px;
+    }
+    
+}
+
+.CoverPagesContainer {
+    position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #faf7f7;
+    z-index: 100;
+}
+
+.CoverPagesContainerMob {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100dvh;
+  background-color: #faf7f7;
+  z-index: 100;
+  h3 {
+    font-size: 3.5rem;
+    word-break: break-all;
+}
+}
+
+@media only screen and (max-width: 1024px) {
+    aside {
+      position: absolute !important;
+      width: 100% !important;
+    }
+
+    .CoverPagesContainer {
+      display: none !important;
+    }
+
+}
+
+@media only screen and (min-width: 1024px) {
+  .CoverPagesContainerMob {
+    display: none !important;
+  }
+}

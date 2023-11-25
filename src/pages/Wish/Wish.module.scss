@@ -1,0 +1,307 @@
+.WishContainer {
+    width: auto;
+    height: calc(100dvh - 64px);
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    background-color: #FBF5F2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+
+    .bgMain {
+        background-size: cover;
+        background-image: url("../../assets/Images/bg-main-4.webp");
+        width: 100%;
+        height: 100%;
+    }
+    .bgBlur {
+        position: absolute;
+        background-color: #fff;
+        opacity: .1;
+        transform: none!important;
+        width: 100%;
+        height: 100%;
+    }
+
+    .populated {
+        position: absolute;
+        margin: 0;
+        display: flex;
+        flex: 1 1;
+        width: 100%;
+        height: 100%;
+        .widgetWrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            padding: 2.5rem 2rem;
+            .wishContent {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+                h3 {
+                    text-align: center;
+                    color: #957443;
+                    font-family: "Corinthia", Sans-serif;
+                    font-size: 2rem;
+                    font-weight: 700;
+                    margin: 0;
+                    margin-bottom: .5rem;
+                }
+
+                .listContainer {
+                    display: flex;
+                    flex-direction: column;
+                    max-height: 100%;
+                    overflow: auto;
+                    margin: 1rem 0;
+                    .listItem {
+                        display: flex;
+                        flex-direction: column;
+                        .item {
+                            display: flex;
+                            flex-direction: column;
+                            margin-bottom: 1rem;
+                            padding: .25rem;
+                            span {
+                                text-align: left;
+                                margin-bottom: .25rem;
+                            }
+                            .title {
+                                font-weight: 600;
+                                color: #957443;
+                            }
+                            .dateTime {
+                                display: flex;
+                                flex-direction: row;
+                                span {
+                                    font-size: 12px;
+                                    margin-right: .25rem;
+                                }
+                            }
+                        }
+                    }
+                    /* Let's get this party started */
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    
+                    /* Track */
+                    &::-webkit-scrollbar-track {
+                        -webkit-border-radius: 12px;
+                        border-radius: 12px;
+                    }
+                    
+                    /* Handle */
+                    &::-webkit-scrollbar-thumb {
+                        -webkit-border-radius: 12px;
+                        border-radius: 12px;
+                        background: #B69889;  
+                    }
+                    &::-webkit-scrollbar-thumb:window-inactive {
+                        background: transparent;
+                    }
+                }
+
+                .commentContainer {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    background: white;
+                    border-radius: 12px 12px 0 0;
+                    left: 0;
+                    bottom: 0;
+                    z-index: 100;
+                    width: 100%;
+                    max-height: 80dvh;
+                    .commentContent {
+                        display: flex;
+                        flex: 1;
+                        flex-direction: column;
+                        padding: 2rem;
+                        .closeContainer {
+                            display: flex;
+                            justify-content: end;
+                            i {
+                                color: #B69889;
+                                cursor: pointer;
+                                font-size: 1.5rem;
+                                &:hover {
+                                    color: #957443;
+                                }
+                            }
+                        }
+                        h5 {
+                            text-align: center;
+                            color: #957443;
+                            font-family: "Corinthia", Sans-serif;
+                            font-size: 2rem;
+                            font-weight: 700;
+                            margin: 0;
+                            margin-bottom: .5rem;
+                        }
+
+                        .commentForm {
+                            display: flex;
+                            flex-direction: column;
+                            .commentFormField {
+                                display: flex;
+                                flex-direction: column;
+                                margin-bottom: 1rem;
+                                label {
+                                    font-size: 14px;
+                                    text-align: left;
+                                    color: #957443;
+                                    font-weight: 600;
+                                    line-height: 1.4em;
+                                    letter-spacing: 1px;
+                                    margin-bottom: .5rem;
+                                }
+                                input, textarea {
+                                    font-family: "Inter", sans-serif;
+                                    outline: #957443;
+                                    border: 1px solid #957443;
+                                    border-radius: 4px;
+                                    line-height: 1.5;
+                                    padding: .5rem .75rem;
+                                    &:focus {
+                                        outline: none;
+                                    }
+                                }
+                                span {
+                                    margin-top: .5rem;
+                                    font-size: .75rem;
+                                    text-align: left;
+                                    color: #957443;
+                                }
+                                .inputRadioContainer {
+                                    display: flex;
+                                    flex-direction: row;
+                                    .inputRadio {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin: .5rem 1rem .5rem -.25rem;
+                                        input {
+                                            margin: 0;
+                                            margin-right: .25rem;
+                                            cursor: pointer;
+                                        }
+                                        label {
+                                            margin-bottom: 0;
+                                            font-weight: 400;
+                                            cursor: pointer;
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .btnContent {
+        display: flex;
+
+        button {
+            flex: 1;
+            background-color: #B69889;
+            border-radius: .5rem;
+            box-shadow: 0px 0px 5px 0px #B69889;
+            padding: .5rem 1rem;
+            border: none;
+            margin-top: 1rem;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            &::before, &::after{
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              width: 100%;
+              transition: all 0.5s ease;
+              border-radius: .5rem;
+            }
+
+            i {
+              font-size: 1rem;
+              position: relative;
+              color: #FBF5F2;
+              margin-right: .5rem;
+              transition: all 0.5s ease;
+            }
+            span {
+              align-self: center;
+              position: relative;
+              color: #FBF5F2;
+            }
+            &:hover {
+              border: 1px solid #B69889;
+              i {
+                color: #B69889 !important;
+              }
+              span {
+                color: #B69889 !important;
+              }
+              
+            }
+        }
+
+        .btnExpand{
+            &::after{     
+              border-radius: .5rem;
+              box-shadow: inset 0 0 0 0px #B69889;
+            }
+            &::before{
+              border-radius: .5rem;
+              background: #ECE4DF;
+              box-shadow: inset 0 0 0 60px #B69889;
+            }
+            &:hover::before{
+              border-radius: unset;
+              color: #B69889 !important;
+              box-shadow: inset 0 0 0 0px #B69889;
+            }
+        }
+    }
+    span {
+        font-size: 14px;
+        text-align: center;
+        color: #635a55;
+        line-height: 1.4em;
+        letter-spacing: 1px;
+        max-width: 380px;
+    }
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 767px) {
+    .WishContainer {
+        width: 100% !important;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .WishContainer {
+        width: 100% !important;
+    }
+}
+
+/* Desktops and larger screens */
+@media only screen and (min-width: 1024px) {
+    .WishContainer {
+        width: 480px !important;
+    }
+}
+  

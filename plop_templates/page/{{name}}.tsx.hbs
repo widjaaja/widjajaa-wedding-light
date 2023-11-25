@@ -1,0 +1,27 @@
+import React, { useEffect  } from 'react';
+
+import classes from './{{name}}.module.scss';
+
+interface {{name}}Props {
+  name: string;
+}
+
+interface {{name}}State {
+  name: string;
+}
+
+const {{name}}: React.FC<{{name}}Props> = ({ name }) => {
+  // Component implementation
+
+  useEffect(() => {
+    // Do something when count changes
+  }, []);
+
+  return (
+    <{{tag}} className={classes.{{name}}Container}>
+      <h1>{name}</h1>
+    </{{tag}}>
+  );
+}
+
+export default {{name}}
