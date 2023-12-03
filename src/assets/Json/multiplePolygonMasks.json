@@ -67,7 +67,7 @@
     },
     "particles": {
         "color": {
-            "value": ["#B69889", "#957443", "#635a55"]
+            "value": ["#555161", "#957443", "#635a55"]
         },
         "lineLinked": {
             "blink": false,

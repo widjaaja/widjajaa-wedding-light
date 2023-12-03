@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "./assets/FontAwesome/css/all.min.css";
 
+@font-face {
+  font-family: 'Murray Hill';
+  src: url(./assets/fonts/murrayhillboldregular.ttf);
+}
+
+@font-face {
+  font-family: 'Andis';
+  src: url(./assets/fonts/andisregular.otf);
+}
+
+@font-face {
+  font-family: 'Cycles Eleven';
+  src: url(./assets/fonts/cycleseleven.ttf);
+}
+
 body {
   margin: 0;
   padding: 0;

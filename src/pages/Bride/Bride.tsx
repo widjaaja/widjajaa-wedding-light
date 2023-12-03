@@ -56,7 +56,7 @@ const Bride: React.FC<BrideProps> = ({ name }) => {
                   repeatType: 'reverse'
                 }}
                 className={classes.profilePic} 
-                src="https://deanstudio.id/wp-content/uploads/2022/12/36-akh-min.png" 
+                src="https://invetin.id/wp-content/uploads/2022/02/mulimah-13-thumb.png" 
                 alt="" 
               />
               <motion.img 
@@ -68,7 +68,7 @@ const Bride: React.FC<BrideProps> = ({ name }) => {
                   repeatType: 'reverse'
                 }}
                 className={classes.profilePic} 
-                src="https://deanstudio.id/wp-content/uploads/2022/12/36-ukh-min.png" 
+                src="https://invetin.id/wp-content/uploads/2022/02/muslim-13-thumb.png" 
                 alt="" 
               />
             </div>

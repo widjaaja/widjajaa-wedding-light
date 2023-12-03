@@ -6,7 +6,7 @@
     display: -ms-flexbox;
     display: flex;
     flex-direction: column;
-    background-color: #FBF5F2;
+    background-color: #f3f1f4;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -25,7 +25,7 @@
         .bgBlur {
             position: absolute;
             background-color: #fff;
-            opacity: .1;
+            opacity: .2;
             transform: none!important;
             width: 100%;
             height: 100%;
@@ -47,22 +47,25 @@
                 
                 .bismillah {
                     max-width: 160px;
-                    filter: invert(43%) sepia(59%) saturate(357%) hue-rotate(357deg) brightness(97%) contrast(89%);
+                    filter: invert(13%) sepia(5%) saturate(3027%) hue-rotate(212deg) brightness(98%) contrast(86%);
                     margin-bottom: .25rem;
                 }
                 .title {
+                    color: #535159;
+                    font-family: "Cycles Eleven", Sans-serif;
                     margin-top: 1rem;
-                    font-size: 13px;
-                    font-style: italic;
+                    font-size: 1rem;
+                    font-weight: bold;
                 }
                 .desc {
+                    color: #535159;
                     margin-top: .25rem;
-                    font-size: 13px;
+                    font-size: 14px;
                 }
 
                 .profileContent {
                     display: flex;
-                    margin: .5rem 0 1rem;
+                    margin: 1rem 0 1rem;
                     .profilePic {
                         width: 5rem;
                         height: auto;
@@ -74,9 +77,10 @@
                     flex-direction: column;
                     margin: .5rem 0;
                     h3 {
+                        outline: 1px;
                         text-align: center;
-                        color: #957443;
-                        font-family: "Corinthia", Sans-serif;
+                        color: #302d3b;
+                        font-family: "Murray Hill", Sans-serif;
                         font-size: 2rem;
                         font-weight: 700;
                         margin: 0;
@@ -86,10 +90,11 @@
                         margin: .25rem;
                     }
                     .contact {
+                        font-family: "Cycles Eleven", Sans-serif;
                         cursor: pointer;
-                        color: #957443;
-                        font-size: .8rem;
-                        font-style: italic;
+                        color: #535159;
+                        font-size: 1rem;
+                        font-weight: bold;
                         margin: 0;
                         margin-bottom: .25rem;
                         &:hover {
@@ -97,15 +102,16 @@
                         }
                         i {
                             margin: 0;
-                            font-size: .8rem;
+                            font-size: 1rem;
                             margin-right: .25rem;
                         }
                     }
                 }
                 i {
+                    font-weight: bold;
                     margin: .75rem 0;
                     font-size: 2rem;
-                    color: #957443;
+                    color: #535159;
                 }
             }
         }
@@ -114,7 +120,7 @@
     span {
         font-size: 14px;
         text-align: center;
-        color: #635a55;
+        color: #302d3b;
         line-height: 1.4em;
         letter-spacing: 1px;
         max-width: 380px;

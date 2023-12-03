@@ -28,6 +28,7 @@ const Home: React.FC<HomeProps> = ({ name }) => {
     >
       <div className={classes.WidgetContainer}>
         <div className={classes.bgMain}></div>
+        <div className={classes.bgBlur}></div>
         <div className={classes.populated}>
           <div className={classes.widgetWrap}>
             <motion.h4

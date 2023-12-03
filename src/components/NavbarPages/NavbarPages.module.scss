@@ -1,8 +1,8 @@
 .NavbarPagesContainer {
     width: 100%;
     height: 64px;
-    background-color: #ECE4DF;
-    color: #B69889;
+    background-color: #f3f1f4;
+    color: #555161;
     font-size: .75rem;
     padding: 0;
 
@@ -44,7 +44,7 @@
                 position: relative;
             }
             &.Selected {
-                background: #B69889 !important;
+                background: #555161 !important;
                 color: #FAF7F7;
                 text-align: center;
             }
@@ -59,15 +59,15 @@
                 color: #FAF7F7 !important;  
             }
             &::after{
-                box-shadow: inset 0 0 0 0px #B69889;
+                box-shadow: inset 0 0 0 0px #555161;
             }
             &::before{
                 margin-left: -100%;
-                box-shadow: inset 0 0 0 100% #B69889;
+                box-shadow: inset 0 0 0 100% #555161;
             }
             &:hover::before{
                 margin-left: 0;
-                background: #B69889;
+                background: #555161;
                 
             }
             &:hover {

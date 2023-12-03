@@ -6,7 +6,7 @@
     display: -ms-flexbox;
     display: flex;
     flex-direction: column;
-    background-color: #FBF5F2;
+    background-color: #f3f1f4;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -20,7 +20,7 @@
       .bgBlur {
           position: absolute;
           background-color: #fff;
-          opacity: .1;
+          opacity: .6;
           transform: none!important;
           width: 100%;
           height: 100%;
@@ -53,20 +53,20 @@
                 margin-top: 1rem;
                 h3 {
                   text-align: center;
-                  color: #957443;
-                  font-family: "Corinthia", Sans-serif;
+                  color: #535159;
+                  font-family: "Murray Hill", Sans-serif;
                   font-size: 2rem;
                   font-weight: 700;
                   margin: 0;
                 }
                 .title {
-                  color: #957443;
+                  color: #535159;
                   margin-bottom: .25rem;
                 }
                 button {
-                  background-color: #B69889;
+                  background-color: #535159;
                   border-radius: .5rem;
-                  box-shadow: 0px 0px 5px 0px #B69889;
+                  box-shadow: 0px 0px 5px 0px #535159;
                   padding: .5rem 1rem;
                   border: none;
                   margin-top: 1rem;
@@ -88,22 +88,22 @@
                   i {
                     font-size: 1rem;
                     position: relative;
-                    color: #FBF5F2;
+                    color: #f3f1f4;
                     margin-right: .5rem;
                     transition: all 0.5s ease;
                   }
                   span {
                     align-self: center;
                     position: relative;
-                    color: #FBF5F2;
+                    color: #f3f1f4;
                   }
                   &:hover {
-                    border: 1px solid #B69889;
+                    border: 1px solid #535159;
                     i {
-                      color: #B69889 !important;
+                      color: #535159 !important;
                     }
                     span {
-                      color: #B69889 !important;
+                      color: #535159 !important;
                     }
                     
                   }
@@ -111,17 +111,17 @@
                 .btnExpand{
                   &::after{     
                     border-radius: .5rem;
-                    box-shadow: inset 0 0 0 0px #B69889;
+                    box-shadow: inset 0 0 0 0px #535159;
                   }
                   &::before{
                     border-radius: .5rem;
-                    background: #ECE4DF;
-                    box-shadow: inset 0 0 0 60px #B69889;
+                    background: #f3f1f4;
+                    box-shadow: inset 0 0 0 60px #535159;
                   }
                   &:hover::before{
                     border-radius: unset;
-                    color: #B69889 !important;
-                    box-shadow: inset 0 0 0 0px #B69889;
+                    color: #535159 !important;
+                    box-shadow: inset 0 0 0 0px #535159;
                   }
                 }
               }
@@ -150,7 +150,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #B69889;
+      background: #555161;
     }
 }
 
@@ -158,7 +158,7 @@
   width: '20px';
   height: '20px';
   border-radius: '50%';
-  background: #B69889;
+  background: #555161;
 }
 
 /* Mobile devices */

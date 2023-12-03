@@ -6,7 +6,7 @@
     display: -ms-flexbox;
     display: flex;
     flex-direction: column;
-    background-color: #FBF5F2;
+    background-color: #f3f1f4;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
@@ -20,7 +20,7 @@
     .bgBlur {
         position: absolute;
         background-color: #fff;
-        opacity: .1;
+        opacity: .2;
         transform: none!important;
         width: 100%;
         height: 100%;
@@ -45,8 +45,8 @@
                 flex-direction: column;
                 h3 {
                     text-align: center;
-                    color: #957443;
-                    font-family: "Corinthia", Sans-serif;
+                    color: #535159;
+                    font-family: "Murray Hill", Sans-serif;
                     font-size: 2rem;
                     font-weight: 700;
                     margin: 0;
@@ -66,19 +66,21 @@
                         .thumbnail {
                             display: flex;
                             justify-content: center;
-                            background-color: #B69889;
+                            background-color: #535159;
                             width: 70px;
                             height: 70px;
                             border-radius: 50%;
                             margin: 0 auto .25rem;
                             i {
-                                color: #FBF5F2;
+                                color: #f3f1f4;
                                 font-size: 2.5rem;
                                 align-self: center;
                             }
 
                         }
                         span {
+                            font-size: 1rem;
+                            font-family: "Cycles Eleven", Sans-serif;
                             font-weight: 600;
                             letter-spacing: unset;
                         }
@@ -91,7 +93,7 @@
     span {
         font-size: 14px;
         text-align: center;
-        color: #635a55;
+        color: #535159;
         line-height: 1.4em;
         letter-spacing: 1px;
         max-width: 380px;
