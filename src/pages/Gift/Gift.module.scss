@@ -152,6 +152,91 @@
 @media only screen and (max-width: 767px) {
     .GiftContainer {
         width: 100% !important;
+        .widgetWrap {
+            align-self: center;
+            padding: 2rem 1.5rem !important;
+
+            .initialContent {
+                img {
+                    max-width: 120px;
+                    filter: invert(13%) sepia(5%) saturate(3027%) hue-rotate(212deg) brightness(98%) contrast(86%);
+                    margin-bottom: .5rem;
+                }
+                span {
+                    font-size: .75rem !important;
+                    margin-top: .5rem;
+                }
+                .quote {
+                    margin: .5rem auto .5rem !important;
+                    font-size: 14px !important;
+                }
+                .bridesName {
+                    margin-top: .5rem !important;
+                    font-size: 2rem !important;
+                }
+                button {
+                    margin: 1rem auto !important;
+                    cursor: pointer;
+                    position: relative;
+                    display: inline-block;
+                    overflow: hidden;
+                    &::before, &::after{
+                      content: '';
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      height: 100%;
+                      width: 100%;
+                      transition: all 0.5s ease;
+                      border-radius: .5rem;
+                    }
+  
+                    i {
+                      font-size: 1rem;
+                      position: relative;
+                      color: #f3f1f4;
+                      margin-right: .5rem;
+                      transition: all 0.5s ease;
+                    }
+                    span {
+                      align-self: center;
+                      position: relative;
+                      color: #f3f1f4;
+                    }
+                    &:hover {
+                      border: 1px solid #535159;
+                      i {
+                        color: #535159 !important;
+                      }
+                      span {
+                        color: #535159 !important;
+                      }
+                      
+                    }
+                }
+                .btnExpand{
+                    &::after{     
+                      border-radius: .5rem;
+                      box-shadow: inset 0 0 0 0px #535159;
+                    }
+                    &::before{
+                      border-radius: .5rem;
+                      background: #f3f1f4;
+                      box-shadow: inset 0 0 0 60px #555161;
+                    }
+                    &:hover::before{
+                      border-radius: unset;
+                      color: #555161 !important;
+                      box-shadow: inset 0 0 0 0px #555161;
+                    }
+                  }
+            }
+            .bottomContent {
+                i {
+                    color: #535159 
+                }
+            }
+        }
     }
 }
 
