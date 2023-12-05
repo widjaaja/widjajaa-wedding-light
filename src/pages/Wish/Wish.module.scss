@@ -288,6 +288,19 @@
 @media only screen and (max-width: 767px) {
     .WishContainer {
         width: 100% !important;
+        .widgetWrap {
+            padding: 2rem 1.5rem !important;
+            h3 {
+                font-size: 1.75rem !important;
+                margin: 0 !important;
+            }
+        }
+        .btnContent {
+            display: flex;
+            button {
+                margin-top: .5rem !important;
+            }
+        }    
     }
 }
 
