@@ -1,4 +1,5 @@
 import React, { useEffect, useState  } from 'react';
+import { firestoreApp } from '../../firebase'
 import { motion } from "framer-motion";
 
 import classes from './Wish.module.scss';
@@ -17,7 +18,22 @@ const Wish: React.FC<WishProps> = ({ name }) => {
 
   useEffect(() => {
     // Do something when count changes
+    getComments()
   }, []);
+
+  const getComments = () => {
+    firestoreApp
+    .collection('comments')
+    .get()
+    .then((snapshot: any) => {
+      console.log(snapshot);
+      
+      // callBackFunction(posts)
+    })
+    .catch((err: any) => {
+      console.log(err)
+    })
+  }
 
   return (
     <motion.div  

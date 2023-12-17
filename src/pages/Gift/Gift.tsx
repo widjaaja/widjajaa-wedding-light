@@ -39,7 +39,6 @@ const Gift: React.FC<GiftProps> = ({ name }) => {
             </span>
             <span>Wassalamu’alaikum Warahmatullahi Wabarakatuh Kami yang berbahagia,</span>
             <span className={classes.bridesName}>Fulan & Fulanah</span>
-            <span>Kel. Bpk. Abu Fulan & Ibu Fulanah <br/> Kel. Bpk Ahmad Fulan & Ibu Fulanah</span>
             <button className={classes.btnExpand}>
               <i className="fa-duotone fa-wallet"></i>
               <span>Amplop Digital</span>

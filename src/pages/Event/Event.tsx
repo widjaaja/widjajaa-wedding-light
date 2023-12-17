@@ -58,7 +58,7 @@ const Event: React.FC<EventProps> = ({ name }) => {
               </div>
             </div>
             <div className={classes.textContent}>
-              <span>Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa berkumpul bersama kaum mukminin di syurga kelak. Aamiin..</span>
+              <span>Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa berkumpul bersama kaum mukminin di syurga kelak. Aamiin.</span>
             </div>
             {/* <div className={classes.countdownContent}>
               <span className={classes.title}>Hitung Mundur Acara</span>

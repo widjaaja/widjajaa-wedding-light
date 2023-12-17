@@ -284,6 +284,17 @@
     }
 }
 
+@media only screen and (max-height: 620px) {
+    .WishContainer {
+        width: auto;
+        .populated {
+            .widgetWrap {
+                padding: 2rem !important;
+            }
+        }
+    }
+}
+
 /* Mobile devices */
 @media only screen and (max-width: 767px) {
     .WishContainer {

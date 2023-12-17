@@ -1,0 +1,28 @@
+{
+    "events": {
+        "date": {
+            "day": "sabtu",
+            "date": "03",
+            "month": "feb",
+            "year": "2024",
+            "akad": "08.30 – 10.00",
+            "resepsi": "10.30 – 14.00"
+        },
+        "place": "Villa Saddak Bandung",
+        "location": "Jl. Bukit Pakar Timur No.76, Ciburial, Kec. Cimenyan, Kabupaten Bandung, Jawa Barat 40198"
+    },
+    "brides": {
+        "male": {
+            "name": "Adjie",
+            "fullname": "Adjie wijaya kusuma",
+            "social": "@",
+            "desc": "Putra Pertama dari Bapak Bagus Purwoko dan Ibu Sumiati"
+        },
+        "female": {
+            "name": "Magfira",
+            "fullname": "Magfira Fairuz",
+            "social": "@",
+            "desc": "Putri Kedua dari Bapak Bangbang Setiawan dan Ibu Tety Nurhayati"
+        }
+    }
+}
