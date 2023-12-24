@@ -58,7 +58,7 @@ const Location: React.FC<LocationProps> = ({ name }) => {
             <h3>Peta Lokasi Acara</h3>
             <span className={classes.title}>—  Villa Saddak Bandung —</span>
             <span>Jl. Bukit Pakar Timur No.76, Ciburial, Kec. Cimenyan, Kabupaten Bandung, Jawa Barat 40198</span>
-            <button className={classes.btnExpand}>
+            <button onClick={() => window.open('https://maps.app.goo.gl/qyx6JWcGHc4vpPCy5', '_blank')} className={classes.btnExpand}>
               <i className="fa-solid fa-map-location-dot"></i>
               <span>Buka Maps</span>
             </button>

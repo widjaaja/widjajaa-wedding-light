@@ -82,7 +82,7 @@ const Home: React.FC<HomeProps> = ({ name }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 2 }}
             >
-              12 . 12 . 2021
+              03 . 02 . 2024
             </motion.p>
           </div>
         </div>

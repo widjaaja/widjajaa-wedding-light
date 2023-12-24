@@ -133,8 +133,8 @@ const Gift: React.FC<GiftProps> = ({ name }) => {
                       {activeGift === 'kirim-kado' &&
                         <div className={classes.kirimKadoContent}>
                           <div className={classes.addressBox}>
-                            <span className={classes.receiver}>Penerima : Fulanah</span>
-                            <span>Griya Serdang Indah Blok C6 No.11 RT 04 RW 05, Margatani, Kramatwatu, Kab. Serang 42161</span>
+                            <span className={classes.receiver}>Penerima : Magfira Fairuz</span>
+                            <span>Bumi Panyileukan Blok G 6 No. 4, Kec. Panyileukan, Kel. Cipadung Kidul, Kota Bandung, 40614</span>
                           </div>
                           <span>( klik tombol copy untuk menyalin )</span>
                           <div className={classes.btnContent}>
