@@ -1,6 +1,6 @@
 import React, { useEffect, useState  } from 'react';
 import { firestoreApp } from '../../firebase'
-import { motion } from "framer-motion";
+import { AnimatePresence , motion } from "framer-motion"
 
 import classes from './Wish.module.scss';
 
@@ -134,8 +134,15 @@ const Wish: React.FC<WishProps> = ({ name }) => {
             </div>
             
             {/* Popup Comment Form */}
+            <AnimatePresence>
             {activeCommentForm && 
-              <div className={classes.commentContainer}>
+              <motion.div 
+                className={classes.commentContainer}
+                initial={{ transform: 'translateY(100vh)', opacity: 0.5 }}
+                animate={{ transform: activeCommentForm ? 'translateY(0)' : 'translateY(100vh)', opacity: 1 }}
+                exit={{ transform: 'translateY(100vh)', opacity: 0.5 }}
+                transition={{ duration: 2, delay: 0 }}
+              >
                 <div className={classes.commentContent}>
                   <div className={classes.closeContainer}>
                     <i onClick={() => setActiveCommentForm(false)} className="fa-duotone fa-xmark"></i>
@@ -166,7 +173,7 @@ const Wish: React.FC<WishProps> = ({ name }) => {
                     </div>
                     <div className={classes.commentFormField}>
                       <label htmlFor="">Ucapan *</label>
-                      <textarea name="" id="" cols={30} rows={10}></textarea>
+                      <textarea name="" id="" rows={4}></textarea>
                       <span>0 of 200 max characters.</span>
                     </div>
                   </div>
@@ -178,8 +185,9 @@ const Wish: React.FC<WishProps> = ({ name }) => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div >     
             }
+          </AnimatePresence>
 
 
           </div>

@@ -73,8 +73,8 @@ const Bride: React.FC<BrideProps> = ({ name }) => {
               />
             </div>
             <div className={classes.profilePerson}>
-              <h3>Fulanah Khadijah</h3>
-              <span>Putra Ketiga dari Bapak Umar Fulan dan Ibu Aisyah Fulanah</span>
+              <h3>Magfira Fairuz</h3>
+              <span>Putri Kedua dari Bapak Bangbang Setiawan dan Ibu Tety Nurhayati</span>
             </div>
             <motion.i 
               animate={{ scale: 1.2 }}
@@ -87,8 +87,8 @@ const Bride: React.FC<BrideProps> = ({ name }) => {
             >
             </motion.i>
             <div className={classes.profilePerson}>
-              <h3>Fulanah Khadijah</h3>
-              <span>Putra Ketiga dari Bapak Umar Fulan dan Ibu Aisyah Fulanah</span>
+              <h3>Adjie Wijaya Kusuma</h3>
+              <span>Putra Pertama dari Bapak Bagus Purwoko dan Ibu Sumiati</span>
             </div>
           </div>
         </div>

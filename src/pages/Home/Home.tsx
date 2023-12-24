@@ -29,6 +29,21 @@ const Home: React.FC<HomeProps> = ({ name }) => {
       <div className={classes.WidgetContainer}>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
+        <div className="bird-container bird-container--one">
+          <div className="bird bird--one"></div>
+        </div>
+        
+        <div className="bird-container bird-container--two">
+          <div className="bird bird--two"></div>
+        </div>
+
+        <div className="bird-container bird-container--three">
+          <div className="bird bird--three"></div>
+        </div>
+        
+        <div className="bird-container bird-container--four">
+          <div className="bird bird--four"></div>
+        </div>
         <div className={classes.populated}>
           <div className={classes.widgetWrap}>
             <motion.h4
@@ -44,7 +59,7 @@ const Home: React.FC<HomeProps> = ({ name }) => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 1 }}
             >
-              Fulan
+              Magfira
             </motion.span>
             <motion.span 
               className={classes.sym}
@@ -60,7 +75,7 @@ const Home: React.FC<HomeProps> = ({ name }) => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 1 }}
             >
-              Fulanah
+              Adjie
             </motion.span>
             <motion.p
               initial={{ y: 50, opacity: 0 }}

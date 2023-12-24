@@ -32,7 +32,7 @@ const Protocol: React.FC<ProtocolProps> = ({ name }) => {
         <div className={classes.widgetWrap}>
           <div className={classes.protocolContent}>
             <h3>Protokol Kesehatan</h3>
-            <span className={classes.desc}>Mengingat kondisi pandemi saat ini, kami menghimbau Bapak/Ibu/Saudara/i tamu undangan agar tetap memperhatikan protokol kesehatan dalam rangka upaya pencegahan penyebaran virus Covid-19.</span>
+            <span className={classes.desc}>Mengingat kondisi pasca pandemi saat ini, kami menghimbau Bapak/Ibu/Saudara/i tamu undangan agar tetap memperhatikan protokol kesehatan dalam rangka upaya pencegahan penyebaran virus Covid-19.</span>
             <div className={classes.listItem}>
               <div className={classes.item}>
                 <div className={classes.thumbnail}>

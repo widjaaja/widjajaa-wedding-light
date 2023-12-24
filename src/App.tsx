@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Bride from './pages/Bride/Bride';
@@ -19,13 +19,49 @@ const AppRouter = () => {
   const [activePages, setActivePages] = useState<string>("wedding");
   const [isMobileView, setIsMobileView] = useState(false);
   const [isAnimating, setAnimating] = useState(false);
+  const bodyRef = useRef<any>(null);
 
   const handleSetActivePages = (message: string) => {
     setActivePages(message)
   };
 
   const handleSetAnimating = () => {
-    setAnimating(!isAnimating);
+    enterFullscreen();
+    setTimeout(() => {
+      setAnimating(!isAnimating);
+    }, 100);
+    
+    
+  };
+
+  const enterFullscreen = () => {
+    const elem = bodyRef.current;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+      elem.webkitRequestFullscreen();
+    }
+  };
+
+  const exitFullscreen = () => {
+    const document: any = window.document;
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+      document.webkitExitFullscreen();
+    }
+  };
+
+  const handleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      enterFullscreen();
+    } else {
+      exitFullscreen();
+    }
   };
 
   useEffect(() => {
@@ -44,7 +80,7 @@ const AppRouter = () => {
   }, []);
 
   return (
-    <div className='mainContainer'>
+    <div ref={bodyRef} className='mainContainer'>
       <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
       {isAnimating &&
         <div className='content'>

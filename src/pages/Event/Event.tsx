@@ -37,28 +37,28 @@ const Event: React.FC<EventProps> = ({ name }) => {
                 <span>SABTU</span>
               </div>
               <div className={classes.center}>
-                <h5>NOV</h5>
-                <span>13</span>
+                <h5>FEB</h5>
+                <span>03</span>
               </div>
               <div className={classes.right}>
-                <span>2021</span>
+                <span>2024</span>
               </div>
             </div>
             <div className={classes.locationContent}>
-              <span><i className="fa-solid fa-map-location-dot"></i>PURI AGUNG LANTAI 4</span>
-              <span>GRAND PALACE HOTEL MAKASSAR</span>
+              <span><i className="fa-solid fa-map-location-dot"></i>VILLA SADDAK BANDUNG (DAGO)</span>
+              <span>JL. BUKIT PAKAR TIMUR No.76, KABUPATEN BANDUNG </span>
 
               <div className={classes.eventContent}>
                 <span className={classes.title}>Akad Nikah</span>
-                <span>PUKUL 10.00 WITA</span>
+                <span>PUKUL 08.30 - 10.00 WIB</span>
               </div>
               <div className={classes.eventContent}>
                 <span className={classes.title}>Resepsi</span>
-                <span>PUKUL 11.00 – 14.00 WITA</span>
+                <span>PUKUL 10.30 – 14.00 WIB</span>
               </div>
             </div>
             <div className={classes.textContent}>
-              <span>Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa berkumpul bersama kaum mukminin di syurga kelak. Aamiin.</span>
+              <span>Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa berkumpul bersama kaum mukminin di surga kelak. Aamiin.</span>
             </div>
             {/* <div className={classes.countdownContent}>
               <span className={classes.title}>Hitung Mundur Acara</span>
