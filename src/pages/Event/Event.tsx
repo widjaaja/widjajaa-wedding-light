@@ -31,35 +31,89 @@ const Event: React.FC<EventProps> = ({ name }) => {
         <div className={classes.bgBlur}></div>
         <div className={classes.populated}>
           <div className={classes.widgetWrap}>
-            <img className={classes.imgFlower} src="https://invetin.id/wp-content/uploads/2021/03/bouquet.png" alt="" />
-            <div className={classes.dateContent}>
-              <div className={classes.left}>
+          <motion.img 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 2, delay: 1 }}
+            className={classes.imgFlower} 
+            src="https://invetin.id/wp-content/uploads/2021/03/bouquet.png" alt="" 
+          />
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+              className={classes.dateContent}
+            >
+              <motion.div 
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 1.5 }}
+                className={classes.left}>
                 <span>SABTU</span>
-              </div>
-              <div className={classes.center}>
+              </motion.div>
+              <motion.div className={classes.center}>
                 <h5>FEB</h5>
                 <span>03</span>
-              </div>
-              <div className={classes.right}>
+              </motion.div>
+              <motion.div 
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 1.5 }}
+                className={classes.right}>
                 <span>2024</span>
-              </div>
-            </div>
-            <div className={classes.locationContent}>
+              </motion.div>
+            </motion.div>
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 1.5 }}
+              className={classes.locationContent}>
               <span><i className="fa-solid fa-map-location-dot"></i>VILLA SADDAK BANDUNG (DAGO)</span>
               <span>JL. BUKIT PAKAR TIMUR No.76, KABUPATEN BANDUNG </span>
 
               <div className={classes.eventContent}>
-                <span className={classes.title}>Akad Nikah</span>
-                <span>PUKUL 08.30 - 10.00 WIB</span>
+                <motion.span 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2, delay: 2.5 }}
+                  className={classes.title}
+                >
+                  Akad Nikah
+                </motion.span>
+                <motion.span
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2, delay: 2.5 }}
+                >
+                  PUKUL 08.30 - 10.00 WIB
+                </motion.span>
               </div>
               <div className={classes.eventContent}>
-                <span className={classes.title}>Resepsi</span>
-                <span>PUKUL 10.30 – 14.00 WIB</span>
+                <motion.span 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2, delay: 3 }}
+                  className={classes.title}
+                >
+                  Resepsi
+                </motion.span>
+                <motion.span
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2, delay: 3 }}
+                >
+                  PUKUL 10.30 – 14.00 WIB
+                </motion.span>
               </div>
-            </div>
-            <div className={classes.textContent}>
+            </motion.div>
+            <motion.div 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 3.5 }}
+              className={classes.textContent}
+            >
               <span>Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa berkumpul bersama kaum mukminin di surga kelak. Aamiin.</span>
-            </div>
+            </motion.div>
             {/* <div className={classes.countdownContent}>
               <span className={classes.title}>Hitung Mundur Acara</span>
               <div className={classes.timeContent}>

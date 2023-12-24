@@ -31,39 +31,77 @@ const Protocol: React.FC<ProtocolProps> = ({ name }) => {
       <div className={classes.populated}>
         <div className={classes.widgetWrap}>
           <div className={classes.protocolContent}>
-            <h3>Protokol Kesehatan</h3>
-            <span className={classes.desc}>Mengingat kondisi pasca pandemi saat ini, kami menghimbau Bapak/Ibu/Saudara/i tamu undangan agar tetap memperhatikan protokol kesehatan dalam rangka upaya pencegahan penyebaran virus Covid-19.</span>
+            <motion.h3
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+            >
+              Protokol Kesehatan
+            </motion.h3>
+            <motion.span 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+              className={classes.desc}
+            >
+              Mengingat kondisi pasca pandemi saat ini, kami menghimbau Bapak/Ibu/Saudara/i tamu undangan agar tetap memperhatikan protokol kesehatan dalam rangka upaya pencegahan penyebaran virus Covid-19.
+            </motion.span>
             <div className={classes.listItem}>
-              <div className={classes.item}>
+              <motion.div 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 1.5 }}
+                className={classes.item}
+              >
                 <div className={classes.thumbnail}>
                   <i className="fa-solid fa-face-mask"></i>
                 </div>
                 <span>Gunakan Masker</span>
-              </div>
-              <div className={classes.item}>
+              </motion.div>
+              <motion.div 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 2 }}
+                className={classes.item}
+              >
                 <div className={classes.thumbnail}>
                   <i className="fa-solid fa-temperature-list"></i>
                 </div>
                 <span>Cek Temperatur</span>
-              </div>
-              <div className={classes.item}>
+              </motion.div>
+              <motion.div 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 2.5 }}
+                className={classes.item}
+              >
                 <div className={classes.thumbnail}>
                   <i className="fa-duotone fa-hands-bubbles"></i>
                 </div>
                 <span>Mencuci Tangan</span>
-              </div>
-              <div className={classes.item}>
+              </motion.div>
+              <motion.div 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 3 }}
+                className={classes.item}
+              >
                 <div className={classes.thumbnail}>
                   <i className="fa-regular fa-people-arrows"></i>
                 </div>
                 <span>Jaga Jarak</span>
-              </div>
-              <div className={classes.item}>
+              </motion.div>
+              <motion.div 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 3.5 }}
+                className={classes.item}
+              >
                 <div className={classes.thumbnail}>
                   <i className="fa-regular fa-handshake-slash"></i>
                 </div>
                 <span>Tidak Bersalaman</span>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

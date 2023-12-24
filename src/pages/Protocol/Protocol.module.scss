@@ -39,7 +39,7 @@
             position: relative;
             width: 100%;
             padding: 2.5rem 2rem;
-
+            margin: auto;
             .protocolContent {
                 display: flex;
                 flex-direction: column;
@@ -52,7 +52,9 @@
                     margin: 0;
                     margin-bottom: .5rem;
                 }
-
+                .desc {
+                    max-width: unset;
+                }
                 .listItem {
                     display: flex;
                     flex-wrap: wrap;

@@ -51,6 +51,8 @@
               width: 100%;
               .initialContent {
                   display: flex;
+                  flex: 1;
+                  justify-content: center;
                   flex-direction: column;
                   align-items: center;
                   position: relative;
@@ -187,8 +189,9 @@
                       margin-bottom: .5rem;
                   }
                   .desc {
+                    text-align: center;
+                    max-width: unset;
                     margin: auto;
-                    text-align: justify;
                   }
 
                   .giftContent {
@@ -334,7 +337,7 @@
 
     .popupContainer {
       .popupContent {
-          padding: 1rem 2rem 2rem !important;
+          padding: 1rem 1.5rem 1.5rem !important;
       }
     }
   }

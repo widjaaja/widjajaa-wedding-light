@@ -44,10 +44,35 @@ const Bride: React.FC<BrideProps> = ({ name }) => {
         <div className={classes.bgBlur}></div>
         <div className={classes.populated}>
           <div className={classes.widgetWrap}>
-            <img className={classes.bismillah} src="https://invetin.id/wp-content/uploads/2020/12/bismillah.png" alt="" />
-            <span className={classes.title}>Assalamu’alaikum Warahmatullahi Wabarakatuh</span>
-            <span className={classes.desc}>Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta’ala, insyaaAllah kami akan menyelenggarakan acara pernikahan :</span>
-            <div className={classes.profileContent}>
+            <motion.img 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+              className={classes.bismillah} 
+              src="https://invetin.id/wp-content/uploads/2020/12/bismillah.png" alt="" 
+            />
+            <motion.span 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+              className={classes.title}
+            >
+              Assalamu’alaikum Warahmatullahi Wabarakatuh
+            </motion.span>
+            <motion.span 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+              className={classes.desc}
+            >
+              Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta’ala, insyaaAllah kami akan menyelenggarakan acara pernikahan :
+            </motion.span>
+            <motion.div 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 2 }}
+              className={classes.profileContent}
+            >
               <motion.img 
                 animate={{ y: [-5, 5] }}
                 transition={{
@@ -71,24 +96,50 @@ const Bride: React.FC<BrideProps> = ({ name }) => {
                 src="https://invetin.id/wp-content/uploads/2022/02/muslim-13-thumb.png" 
                 alt="" 
               />
-            </div>
+            </motion.div >
             <div className={classes.profilePerson}>
-              <h3>Magfira Fairuz</h3>
-              <span>Putri Kedua dari Bapak Bangbang Setiawan dan Ibu Tety Nurhayati</span>
+              <motion.h3 
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 2.5 }}
+              >
+                Magfira Fairuz
+              </motion.h3>
+              <motion.span
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 3 }}
+              >
+                Putri Kedua dari Bapak Bangbang Setiawan dan Ibu Tety Nurhayati
+              </motion.span>
             </div>
             <motion.i 
-              animate={{ scale: 1.2 }}
+              initial={{ opacity: 0 }}
+              animate={{ scale: 1.2, opacity: 1 }}
               transition={{
                 duration: .5,
                 repeat: Infinity,
-                repeatType: 'reverse'
+                repeatType: 'reverse',
+                delay: 3
               }}
              className="fa-solid fa-heart"
             >
             </motion.i>
             <div className={classes.profilePerson}>
-              <h3>Adjie Wijaya Kusuma</h3>
-              <span>Putra Pertama dari Bapak Bagus Purwoko dan Ibu Sumiati</span>
+              <motion.h3 
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 2.5 }}
+              >
+                Adjie Wijaya Kusuma
+              </motion.h3 >
+              <motion.span
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 2, delay: 3 }}
+              >
+                Putra Pertama dari Bapak Bagus Purwoko dan Ibu Sumiati
+              </motion.span>
             </div>
           </div>
         </div>

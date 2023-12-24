@@ -55,13 +55,36 @@ const Location: React.FC<LocationProps> = ({ name }) => {
           )}
 
           <div className={classes.locationContent}>
-            <h3>Peta Lokasi Acara</h3>
-            <span className={classes.title}>—  Villa Saddak Bandung —</span>
-            <span>Jl. Bukit Pakar Timur No.76, Ciburial, Kec. Cimenyan, Kabupaten Bandung, Jawa Barat 40198</span>
-            <button onClick={() => window.open('https://maps.app.goo.gl/qyx6JWcGHc4vpPCy5', '_blank')} className={classes.btnExpand}>
+            <motion.h3
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }}
+            >
+              Peta Lokasi Acara
+            </motion.h3>
+            <motion.span
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }} 
+              className={classes.title}
+            >
+              —  Villa Saddak Bandung —
+            </motion.span>
+            <motion.span
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 2, delay: 1 }} 
+            >
+              Jl. Bukit Pakar Timur No.76, Ciburial, Kec. Cimenyan, Kabupaten Bandung, Jawa Barat 40198
+            </motion.span>
+            <motion.button 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2, delay: 2 }} 
+              onClick={() => window.open('https://maps.app.goo.gl/qyx6JWcGHc4vpPCy5', '_blank')} className={classes.btnExpand}>
               <i className="fa-solid fa-map-location-dot"></i>
               <span>Buka Maps</span>
-            </button>
+            </motion.button>
           </div>
         </div>
 
