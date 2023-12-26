@@ -186,7 +186,7 @@
                       font-size: 2rem;
                       font-weight: 700;
                       margin: 0;
-                      margin-bottom: .5rem;
+                      margin-bottom: .25rem;
                   }
                   .desc {
                     text-align: center;
@@ -202,7 +202,7 @@
                       display: flex;
                       flex: 1;
                       flex-direction: row;
-                      margin: 1rem 0;
+                      margin-top: .5rem;
                       border-bottom: 2px solid #535159;
                       .tabItem {
                         display: flex;
@@ -232,6 +232,51 @@
                         }
                       }
                     }
+
+                    .giftBankContent {
+                      display: flex;
+                      flex: 1;
+                      flex-direction: row;
+                      margin-bottom: 1rem;
+                      border-bottom: 2px solid #535159;
+                      .bankItem {
+                        display: flex;
+                        justify-content: center;
+                        flex: 1;
+                        padding: .75rem 1rem;
+                        transition: all 0.5s ease;
+                        cursor: pointer;
+                        span, i {
+                          margin-right: .25rem;
+                        }
+                        img {
+                          margin: auto;
+                          max-width: 100px;
+                          height: fit-content;
+                          max-height: 40px;
+                        }
+                        .bankMandiri {
+                          margin-top: -1px;
+                        }
+                        &.active {
+                          background-color: #535159 !important;
+                          opacity: 1 !important;
+                          span, i {
+                            color: #f3f1f4;
+                            margin-right: .25rem;
+                          }
+                        }
+                        &:hover {
+                          background-color: #535159;
+                          opacity: .75;
+                          span, i {
+                            color: #f3f1f4;
+                            margin-right: .25rem;
+                          }
+                        }
+                      }
+                    }
+
                     .amplopDigitalContent {
                       display: flex;
                       flex-direction: column;
@@ -284,6 +329,7 @@
                     .kirimKadoContent {
                       display: flex;
                       flex-direction: column;
+                      margin-top: .5rem;
                       span {
                         margin: auto;
                       }

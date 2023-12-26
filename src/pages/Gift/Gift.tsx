@@ -2,7 +2,7 @@ import React, { useEffect, useState  } from 'react';
 import { AnimatePresence , motion } from "framer-motion"
 
 import logoMandiri from "../../assets/Images/logo-bank-mandiri.png";
-import logoBSI from "../../assets/Images/logo-bank-syariah-indonesia.png";
+import logoHijra from "../../assets/Images/hijra-logo.png"
 import logoJenius from "../../assets/Images/logo-jenius.png";
 
 import classes from './Gift.module.scss';
@@ -16,14 +16,34 @@ interface GiftState {
 }
 
 const Gift: React.FC<GiftProps> = ({ name }) => {
+  const listBank = {
+    "jenius": {
+      "kode": "213",
+      "norek": "90300229580",
+      "nama": "Adjie Wijaya Kusuma"
+    },
+    "mandiri": {
+      "kode": "008",
+      "norek": "1260009790360",
+      "nama": "Magfira Fairuz"
+    },
+    "hijra": {
+      "kode": "722",
+      "norek": "7800110100148547",
+      "nama": "Magfira Fairuz"
+    },
+  }
+
   // Component implementation
   const [activeGiftPopup, setActiveGiftPopup] = useState<boolean>(false);
   const [activeGift, setActiveGift] = useState<string>('amplop-digital');
-  const [activeBank, setActiveBank] = useState<string>('mandiri');
+  const [activeBank, setActiveBank] = useState<string>('jenius');
+  const [selectedBankDetail, setSelectedBankDetail] = useState<any>({});
   const [copyText, setCopyText] = useState<string>('Copy');
   
   useEffect(() => {
     // Do something when count changes
+    setSelectedBankDetail(listBank.jenius)
   }, []);
 
   async function copyContent(text: string) {
@@ -141,20 +161,37 @@ const Gift: React.FC<GiftProps> = ({ name }) => {
                           <span>Kirim Kado</span>
                         </div>
                       </div>
+
+                      {activeGift === 'amplop-digital' &&
+                        <div className={classes.giftBankContent}>
+                          <div onClick={() => {setActiveBank('jenius'); setSelectedBankDetail(listBank.jenius);}} className={`${classes.bankItem} ${activeBank === 'jenius' && classes.active}`}>
+                            <img src={logoJenius} alt="" />
+                          </div>
+                          <div onClick={() => {setActiveBank('mandiri'); setSelectedBankDetail(listBank.mandiri);}} className={`${classes.bankItem} ${activeBank === 'mandiri' && classes.active}`}>
+                            <img className={`${classes.bankMandiri}`} src={logoMandiri} alt="" />
+                          </div>
+                          <div onClick={() => {setActiveBank('hijra'); setSelectedBankDetail(listBank.hijra);}} className={`${classes.bankItem} ${activeBank === 'hijra' && classes.active}`}>
+                            <img src={logoHijra} alt="" />
+                          </div>
+                        </div>
+                      }
+
                       {activeGift === 'amplop-digital' &&
                         <div className={classes.amplopDigitalContent}>
                           <div className={classes.listBank}>
                             <div className={classes.bankDetail}>
-                              <img src={logoBSI} alt="" />
-                              <span>Kode Bank (451)</span>
-                              <span>No. Rekening 1179777474</span>
-                              <span>a.n. Ahmad Fulan</span>
+                              <span>Kode Bank ({selectedBankDetail.kode})</span>
+                              <span>No. Rekening {selectedBankDetail.norek}</span>
+                              {activeBank === 'jenius' && 
+                                <span>Cashtag $mbuymbiy</span>
+                              }
+                              <span>a.n. {selectedBankDetail.nama}</span>
                               <div className={classes.copyBankContainer}>
                                 <span>( klik tombol copy untuk menyalin )</span>
                                 <div className={classes.copyBankContent}>
-                                  <input type="text" disabled value="1179777474" />
+                                  <input type="text" disabled value={selectedBankDetail.norek} />
                                   <div className={classes.btnContent}>
-                                    <button onClick={() => copyContent('1179777474')} className={classes.btnExpand}>
+                                    <button onClick={() => copyContent(selectedBankDetail.norek)} className={classes.btnExpand}>
                                       <i className="fa-regular fa-copy"></i>
                                       <span>{copyText}</span>
                                     </button>
@@ -163,25 +200,6 @@ const Gift: React.FC<GiftProps> = ({ name }) => {
                               </div>
 
                             </div>
-                            {/* <div className={classes.bankDetail}>
-                              <img src={logoBSI} alt="" />
-                              <span>Kode Bank (451)</span>
-                              <span>No. Rekening 1179777474</span>
-                              <span>a.n. Ahmad Fulan</span>
-                              <div className={classes.copyBankContainer}>
-                                <span>( klik tombol copy untuk menyalin )</span>
-                                <div className={classes.copyBankContent}>
-                                  <input type="text" disabled value="1179777474" />
-                                  <div className={classes.btnContent}>
-                                    <button className={classes.btnExpand}>
-                                      <i className="fa-regular fa-copy"></i>
-                                      <span>Copy</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div> */}
                           </div>
 
                         </div>
