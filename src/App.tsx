@@ -16,8 +16,6 @@ interface AppState {
   activePages: string;
 }
 
-
-
 const AppRouter = () => {
   const [activePages, setActivePages] = useState<string>("wedding");
   const [isMobileView, setIsMobileView] = useState(false);
@@ -81,17 +79,17 @@ const AppRouter = () => {
   }, []);
 
   return (
-    <div ref={bodyRef} className='mainContainer'>
-      <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
-      {isAnimating &&
-        <div className='content'>
-          <MainComponent activePages={activePages}/>
-          <NavbarPages onNavClick={handleSetActivePages} activeNav={activePages}/>
-        </div>
-      }
-
-
-    </div>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <div ref={bodyRef} className='mainContainer'>
+        <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
+        {isAnimating &&
+          <div className='content'>
+            <MainComponent activePages={activePages}/>
+            <NavbarPages onNavClick={handleSetActivePages} activeNav={activePages}/>
+          </div>
+        }
+      </div>
+    </React.Suspense>
   );
 };
 

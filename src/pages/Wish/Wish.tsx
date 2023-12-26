@@ -3,44 +3,72 @@ import supabase from "../../supabase";
 import { AnimatePresence , motion } from "framer-motion"
 
 import classes from './Wish.module.scss';
+import { setTimeout } from 'timers/promises';
 
 interface WishProps {
   name: string;
 }
 
-interface WishState {
-  name: string;
-}
-
-const Wish: React.FC<WishProps> = ({ name }) => {
+const Wish: React.FC<WishProps> = () => {
   // Component implementation
   const [activeCommentForm, setActiveCommentForm] = useState<boolean>(false);
   const [listComment, setListComment] = useState<any>([]);
-
+  const [sendWishText, setSendWishText] = useState<string>('Kirim Ucapan');
+  const [fields, setFields] = useState({ // <-- create field state
+    name: '',
+    message: '',
+    presence: '', //hadir, tidakHadir, BelumPasti
+  });
   useEffect(() => {
     // Do something when count changes
     getComments()
   }, []);
 
   const getComments = async () => {
-    const { data } = await supabase.from("comments").select();
+    const { data } = await supabase.from("comments").select().order('created_at', { ascending: false });
 
     if (Array.isArray(data)) {
       console.log(data, 'masook');
-      setListComment((prevNames: any) => [...prevNames, ...data])
+      setListComment([...data])
     }
     console.log(listComment);
     
   }
 
+  const changeHandler = (e: any) => {
+    const { name, value } = e.target;
+    setFields((fields) => ({
+      ...fields,
+      [name]: value
+    }));
+  };
+
   const createComments = async () => {
     const { data, error } = await supabase
     .from('comments')
-    .insert({ name: 'Axel', message: 'Selamat !' })
+    .insert(fields)
     .select();
 
-    console.log(data, error, 'masook');
+    console.log(data, error);
+    setSendWishText('Terkirim!');
+    getComments();
+
+    window.setTimeout(() => {
+      setFields({
+        name: '',
+        message: '',
+        presence: '',
+      })
+      setSendWishText('Kirim Ucapan');
+      setActiveCommentForm(false);
+    }, 2000);
+
+  }
+
+  const handleSubmit = (event: any) => {
+    console.log(fields);
     
+    event.preventDefault();
   }
 
   return (
@@ -154,7 +182,7 @@ const Wish: React.FC<WishProps> = ({ name }) => {
                 exit={{ transform: 'translateY(100vh)', opacity: 0.5 }}
                 transition={{ duration: 2, delay: 0 }}
               >
-                <div className={classes.commentContent}>
+                <form onSubmit={handleSubmit} className={classes.commentContent}>
                   <div className={classes.closeContainer}>
                     <i onClick={() => setActiveCommentForm(false)} className="fa-duotone fa-xmark"></i>
                   </div>
@@ -163,39 +191,49 @@ const Wish: React.FC<WishProps> = ({ name }) => {
                   <div className={classes.commentForm}>
                     <div className={classes.commentFormField}>
                       <label htmlFor="">Nama *</label>
-                      <input type="text" className={classes.formInput} />
+                      <input 
+                        type="text" 
+                        name="name"
+                        className={classes.formInput} 
+                        onChange={changeHandler}
+                        value={fields.name} 
+                      />
                     </div>
                     <div className={classes.commentFormField}>
                       <label htmlFor="">Kehadiran *</label>
-                      <div className={classes.inputRadioContainer}>
+                      <div onChange={changeHandler} className={classes.inputRadioContainer}>
                         <div className={classes.inputRadio}>
-                          <input type="radio" id='hadir' name="present" value="hadir"/>
+                          <input type="radio" id='hadir' name="presence" value="hadir"/>
                           <label htmlFor="hadir">Hadir</label>
                         </div>
                         <div className={classes.inputRadio}>
-                          <input type="radio" id='tidakHadir' name="present" value="tidakHadir"/>
+                          <input type="radio" id='tidakHadir' name="presence" value="tidakHadir"/>
                           <label htmlFor="tidakHadir">Tidak Hadir</label>
                         </div>
                         <div className={classes.inputRadio}>
-                          <input type="radio" id='belumPasti' name="present" value="belumPasti"/>
+                          <input type="radio" id='belumPasti' name="presence" value="belumPasti"/>
                           <label htmlFor="belumPasti">Belum Pasti</label>
                         </div>
                       </div>
                     </div>
                     <div className={classes.commentFormField}>
                       <label htmlFor="">Ucapan *</label>
-                      <textarea name="" id="" rows={4}></textarea>
-                      <span>0 of 200 max characters.</span>
+                      <textarea 
+                        name="message" id="" rows={4}
+                        onChange={changeHandler}
+                        value={fields.message} 
+                      ></textarea>
+                      <span>{fields.message.length} of 200 max characters.</span>
                     </div>
                   </div>
   
                   <div className={classes.btnContent}>
-                    <button onClick={() => createComments()} className={classes.btnExpand}>
+                    <button onClick={() => createComments()} type="submit" className={classes.btnExpand}>
                       <i className="fa-duotone fa-messages"></i>
-                      <span>Kirim Ucapan</span>
+                      <span>{sendWishText}</span>
                     </button>
                   </div>
-                </div>
+                </form>
               </motion.div >     
             }
           </AnimatePresence>
