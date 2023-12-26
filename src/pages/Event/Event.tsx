@@ -102,7 +102,7 @@ const Event: React.FC<EventProps> = ({ name }) => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 2, delay: 3 }}
                 >
-                  PUKUL 10.30 – 14.00 WIB
+                  PUKUL 11.00 – 14.00 WIB
                 </motion.span>
               </div>
             </motion.div>
