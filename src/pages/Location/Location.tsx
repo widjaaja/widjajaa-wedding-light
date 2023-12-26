@@ -15,7 +15,7 @@ interface LocationState {
 const Location: React.FC<LocationProps> = ({ name }) => {
   // Component implementation
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCxwvVwdI1xX5X4UPVWXX9jxVAEW4LOy58',
+    googleMapsApiKey: 'AIzaSyArzF7m6lgw2vkhUTdF-JhlSE3UGjlyalg',
   });
   const center = { lat: -6.8608618, lng: 107.6337942 };
   const customMarker = {
