@@ -1,5 +1,5 @@
 import React, { useEffect, useState  } from 'react';
-import { firestoreApp } from '../../firebase'
+import supabase from "../../supabase";
 import { AnimatePresence , motion } from "framer-motion"
 
 import classes from './Wish.module.scss';
@@ -15,24 +15,32 @@ interface WishState {
 const Wish: React.FC<WishProps> = ({ name }) => {
   // Component implementation
   const [activeCommentForm, setActiveCommentForm] = useState<boolean>(false);
+  const [listComment, setListComment] = useState<any>([]);
 
   useEffect(() => {
     // Do something when count changes
     getComments()
   }, []);
 
-  const getComments = () => {
-    firestoreApp
-    .collection('comments')
-    .get()
-    .then((snapshot: any) => {
-      console.log(snapshot);
-      
-      // callBackFunction(posts)
-    })
-    .catch((err: any) => {
-      console.log(err)
-    })
+  const getComments = async () => {
+    const { data } = await supabase.from("comments").select();
+
+    if (Array.isArray(data)) {
+      console.log(data, 'masook');
+      setListComment((prevNames: any) => [...prevNames, ...data])
+    }
+    console.log(listComment);
+    
+  }
+
+  const createComments = async () => {
+    const { data, error } = await supabase
+    .from('comments')
+    .insert({ name: 'Axel', message: 'Selamat !' })
+    .select();
+
+    console.log(data, error, 'masook');
+    
   }
 
   return (
@@ -52,14 +60,17 @@ const Wish: React.FC<WishProps> = ({ name }) => {
 
             <div className={classes.listContainer}>
               <div className={classes.listItem}>
-                <div className={classes.item}>
-                  <span className={classes.title}>Ika</span>
-                  <span>Alhamdulillahirobillalamin barakallahu fiik</span>
+                {listComment.map((item: any) =>
+                <div key={item.id} className={classes.item}>
+                  <span className={classes.title}>{item.name}</span>
+                  <span>{item.message}</span>
                   <div className={classes.dateTime}>
                     <span>October 22, 2023</span>
                     <span>12:48 pm</span>
                   </div>
                 </div>
+                )}
+
                 <div className={classes.item}>
                   <span className={classes.title}>Ika</span>
                   <span>Selamat menapaki jalan baru bersama, dengan cinta sebagai panduan setiap langkahnya</span>
@@ -179,7 +190,7 @@ const Wish: React.FC<WishProps> = ({ name }) => {
                   </div>
   
                   <div className={classes.btnContent}>
-                    <button onClick={() => setActiveCommentForm(false)} className={classes.btnExpand}>
+                    <button onClick={() => createComments()} className={classes.btnExpand}>
                       <i className="fa-duotone fa-messages"></i>
                       <span>Kirim Ucapan</span>
                     </button>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import supabase from "./supabase";
+
 import Home from './pages/Home/Home';
 import Bride from './pages/Bride/Bride';
 import Event from './pages/Event/Event';
@@ -14,6 +15,8 @@ import NavbarPages from "./components/NavbarPages/NavbarPages";
 interface AppState {
   activePages: string;
 }
+
+
 
 const AppRouter = () => {
   const [activePages, setActivePages] = useState<string>("wedding");
@@ -30,8 +33,6 @@ const AppRouter = () => {
     setTimeout(() => {
       setAnimating(!isAnimating);
     }, 100);
-    
-    
   };
 
   const enterFullscreen = () => {
@@ -64,9 +65,9 @@ const AppRouter = () => {
     }
   };
 
+
   useEffect(() => {
     // Do something when count changes
-    
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 1024); // Adjust the breakpoint as per your needs
     };
