@@ -112,7 +112,7 @@ const Event: React.FC<EventProps> = ({ name, isAudio, onSetAudio }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, delay: 1.5 }}
               className={classes.locationContent}>
-              <span><i className="fa-solid fa-map-location-dot"></i>VILLA SADDAK BANDUNG (DAGO)</span>
+              <span><i className="fa-solid fa-map-location-dot"></i>VILLA SADDAK BANDUNG</span>
               <span>JL. BUKIT PAKAR TIMUR No.76, KABUPATEN BANDUNG </span>
 
               <div className={classes.eventContent}>

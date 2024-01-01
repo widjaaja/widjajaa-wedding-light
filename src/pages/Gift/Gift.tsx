@@ -226,9 +226,6 @@ const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio }) => {
                             <div className={classes.bankDetail}>
                               <span>Kode Bank ({selectedBankDetail.kode})</span>
                               <span>No. Rekening {selectedBankDetail.norek}</span>
-                              {activeBank === 'jenius' && 
-                                <span>Cashtag $mbuymbiy</span>
-                              }
                               <span>a.n. {selectedBankDetail.nama}</span>
                               <div className={classes.copyBankContainer}>
                                 <span>( klik tombol copy untuk menyalin )</span>
@@ -266,12 +263,12 @@ const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio }) => {
                       }
                     </div>
 
-                    <div className={classes.btnContent}>
+                    {/* <div className={classes.btnContent}>
                       <button className={classes.btnExpand}>
                         <i className="fa-brands fa-whatsapp"></i>
                         <span> Konfirmasi WA</span>
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </motion.div >     
               }

@@ -509,7 +509,25 @@
 
         .popupContainer {
           .popupContent {
-              padding: 1rem 2rem 2rem !important;
+              padding: 1rem 1rem 2rem !important;
+              .giftContent {
+                display: flex;
+                flex-direction: column;
+                .giftBankContent {
+                  .bankItem {
+                    padding: .5rem .75rem !important;
+                    img {
+                      margin: auto;
+                      max-width: 80px !important;
+                      height: fit-content;
+                      max-height: 40px;
+                    }
+                    .bankMandiri {
+                      margin-top: 4px !important;
+                    }
+                  }
+                }
+              }
           }
         }
     }
