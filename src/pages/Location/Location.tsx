@@ -58,7 +58,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
 const Location: React.FC<LocationProps> = ({ name, isAudio, onSetAudio }) => {
   // Component implementation
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyArzF7m6lgw2vkhUTdF-JhlSE3UGjlyalg',
+    googleMapsApiKey: 'AIzaSyDRS5_ofwPT_26aHRQMNSWUDuyMvMN9FCk',
   });
   const center = { lat: -6.8608618, lng: 107.6337942 };
   const customMarker = {
