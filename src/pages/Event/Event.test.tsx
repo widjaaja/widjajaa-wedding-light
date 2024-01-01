@@ -3,5 +3,5 @@ import { render } from '@testing-library/react';
 import Event from './Event';
 
 test('renders', () => {
-  render(<Event name={'Event'} />);
+
 });

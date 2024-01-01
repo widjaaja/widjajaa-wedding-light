@@ -5,13 +5,56 @@ import classes from './Event.module.scss';
 
 interface EventProps {
   name: string;
+  isAudio: boolean;
+  onSetAudio: (item: boolean) => void;
 }
 
 interface EventState {
   name: string;
 }
 
-const Event: React.FC<EventProps> = ({ name }) => {
+interface WidgetComponentProps {
+  name: string;
+  isAudio: boolean;
+  onSetAudio: (item: boolean) => void;
+}
+
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio }) => {
+  return (
+    <motion.div 
+      className={classes.WidgetComponent} 
+      initial={{ opacity: 1 }}
+      transition={{ duration: 2, delay: 1 }}
+    >
+      <div className={classes.listWidget}>
+
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className={classes.item}
+        >
+          <i className="fa-solid fa-maximize"></i>
+        </motion.div >
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className={classes.item}
+        >
+          {isAudio ? 
+            <i onClick={() => onSetAudio(false)} className="fa-solid fa-volume"></i>
+            :
+            <i onClick={() => onSetAudio(true)}  className="fa-solid fa-volume-slash"></i>
+          }
+          
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
+
+const Event: React.FC<EventProps> = ({ name, isAudio, onSetAudio }) => {
   // Component implementation
 
   useEffect(() => {
@@ -27,6 +70,7 @@ const Event: React.FC<EventProps> = ({ name }) => {
       transition={{ duration: 2 }}
     >
       <div className={classes.WidgetContainer}>
+        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
         <div className={classes.populated}>

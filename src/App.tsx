@@ -19,6 +19,7 @@ interface AppState {
   activePages: string;
   audio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
 const AppRouter = () => {
@@ -115,7 +116,7 @@ const AppRouter = () => {
         <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
         {isAnimating &&
           <div className='content'>
-            <MainComponent activePages={activePages} audio={isAudio} onSetAudio={handleSetAudio} />
+            <MainComponent activePages={activePages} audio={isAudio} onSetAudio={handleSetAudio} onSetFullScreen={handleFullscreen} />
             <NavbarPages onNavClick={handleSetActivePages} activeNav={activePages}/>
           </div>
         }
@@ -124,18 +125,18 @@ const AppRouter = () => {
   );
 };
 
-const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio }) => {
+const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio, onSetFullScreen }) => {
   switch(activePages) {
 
-    case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
-    case "brides":   return <Bride name={'name'}/>;
-    case "event": return <Event name={'name'}/>;
-    case "location":  return <Location name={'name'}/>;
-    case "protocol":  return <Protocol name={'name'}/>;
-    case "gifts":  return <Gift name={'name'}/>;
-    case "wish":  return <Wish name={'name'}/>;
+    case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "brides":   return <Bride name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    case "event": return <Event name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    case "location":  return <Location name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    case "protocol":  return <Protocol name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    case "gifts":  return <Gift name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    case "wish":  return <Wish name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
 
-    default:      return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    default: return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
   }
 }
 

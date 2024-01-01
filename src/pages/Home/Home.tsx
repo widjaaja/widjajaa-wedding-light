@@ -7,6 +7,7 @@ interface HomeProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
 interface HomeState {
@@ -17,9 +18,10 @@ interface WidgetComponentProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
-const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio }) => {
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   return (
     <motion.div 
       className={classes.WidgetComponent} 
@@ -28,23 +30,33 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
     >
       <div className={classes.listWidget}>
 
-        <div className={classes.item}>
-          <i className="fa-solid fa-maximize"></i>
-        </div>
-        <div className={classes.item}>
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className={classes.item}
+        >
+          <i onClick={() => onSetFullScreen()} className="fa-solid fa-maximize"></i>
+        </motion.div >
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className={classes.item}
+        >
           {isAudio ? 
             <i onClick={() => onSetAudio(false)} className="fa-solid fa-volume"></i>
             :
             <i onClick={() => onSetAudio(true)}  className="fa-solid fa-volume-slash"></i>
           }
           
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   )
 }
 
-const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio }) => {
+const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   // Component implementation
 
   useEffect(() => {
@@ -60,7 +72,7 @@ const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio }) => {
       transition={{ duration: 2 }}
     >
       <div className={classes.WidgetContainer}>
-        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio}></WidgetComponent>
+        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
         <div className="bird-container bird-container--one">

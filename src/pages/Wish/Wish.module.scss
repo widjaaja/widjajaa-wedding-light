@@ -285,6 +285,34 @@
     }
 }
 
+.WidgetComponent {
+    position: absolute;
+    z-index: 100;
+    right: 8px;
+    bottom: 8px;
+    .listWidget {
+        display: flex;
+        flex-direction: column;
+        .item {
+            display: flex;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #555161;
+            color: #FAF7F7;
+            cursor: pointer;
+            margin-top: .5rem;
+            i {
+                text-align: center;
+                margin: auto;
+            }
+            :active {
+                box-shadow: inset 0 0 0 0px #555161;
+            }
+        }
+    }
+}
+
 @media only screen and (max-height: 620px) {
     .WishContainer {
         width: auto;
