@@ -11,6 +11,30 @@ interface HomeState {
   name: string;
 }
 
+interface WidgetComponentProps {
+  name: string;
+}
+
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name }) => {
+  return (
+    <motion.div 
+      className={classes.WidgetComponent} 
+      initial={{ opacity: 1 }}
+      transition={{ duration: 2, delay: 1 }}
+    >
+      <div className={classes.listWidget}>
+
+        <div className={classes.item}>
+          <i className="fa-solid fa-maximize"></i>
+        </div>
+        <div className={classes.item}>
+          <i className="fa-solid fa-volume"></i>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 const Home: React.FC<HomeProps> = ({ name }) => {
   // Component implementation
 
@@ -27,6 +51,7 @@ const Home: React.FC<HomeProps> = ({ name }) => {
       transition={{ duration: 2 }}
     >
       <div className={classes.WidgetContainer}>
+        <WidgetComponent name={'name'}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
         <div className="bird-container bird-container--one">

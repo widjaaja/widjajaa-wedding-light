@@ -43,6 +43,16 @@ body {
     height: 100%;
     max-height: 100dvh;
     background-color: #FAF7F7;
+
+	.layoutContainer {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		.listWidget {
+			display: flex;
+			flex-direction: column;
+		}
+	}
   }
 }
 

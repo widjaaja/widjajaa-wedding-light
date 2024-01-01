@@ -12,6 +12,9 @@ import Wish from './pages/Wish/Wish';
 import CoverPages from "./components/CoverPages/CoverPages";
 import NavbarPages from "./components/NavbarPages/NavbarPages";
 
+const nasheed = require("./assets/Audio/nasheed-08.mp3");
+const birds = require("./assets/Audio/birds.mp3");
+
 interface AppState {
   activePages: string;
 }
@@ -21,16 +24,22 @@ const AppRouter = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [isAnimating, setAnimating] = useState(false);
   const bodyRef = useRef<any>(null);
+  const audioEl = new Audio(nasheed);
+  const audioBirdEl = new Audio(birds);
 
   const handleSetActivePages = (message: string) => {
     setActivePages(message)
   };
-
   const handleSetAnimating = () => {
     enterFullscreen();
     setTimeout(() => {
+      // audioBirdEl.play();
+      // audioEl.play();
       setAnimating(!isAnimating);
     }, 100);
+    setTimeout(() => {
+      // audioBirdEl.pause();
+    }, 15000);
   };
 
   const enterFullscreen = () => {
@@ -62,6 +71,8 @@ const AppRouter = () => {
       exitFullscreen();
     }
   };
+
+
 
 
   useEffect(() => {
