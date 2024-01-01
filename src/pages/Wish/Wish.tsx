@@ -1,23 +1,28 @@
 import React, { useEffect, useState  } from 'react';
-import supabase from "../../supabase";
+import moment from 'moment';
 import { AnimatePresence , motion } from "framer-motion"
+import supabase from "../../supabase";
+
 
 import classes from './Wish.module.scss';
 import { setTimeout } from 'timers/promises';
+import { log } from 'util';
 
 interface WishProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
 interface WidgetComponentProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
-const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio }) => {
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   return (
     <motion.div 
       className={classes.WidgetComponent} 
@@ -32,7 +37,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
           transition={{ duration: 1, delay: 2 }}
           className={classes.item}
         >
-          <i className="fa-solid fa-maximize"></i>
+          <i onClick={() => onSetFullScreen()} className="fa-solid fa-maximize"></i>
         </motion.div >
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
@@ -52,7 +57,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
+const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   // Component implementation
   const [activeCommentForm, setActiveCommentForm] = useState<boolean>(false);
   const [listComment, setListComment] = useState<any>([]);
@@ -86,6 +91,11 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
     }));
   };
 
+  function onChangeDisabled():boolean {
+    let res = fields.name.length > 3 && fields.message.length > 3 && fields.presence.length > 3;
+    return !res;
+  };
+
   const createComments = async () => {
     const { data, error } = await supabase
     .from('comments')
@@ -104,13 +114,11 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
       })
       setSendWishText('Kirim Ucapan');
       setActiveCommentForm(false);
-    }, 2000);
+    }, 1000);
 
   }
 
   const handleSubmit = (event: any) => {
-    console.log(fields);
-    
     event.preventDefault();
   }
 
@@ -122,7 +130,7 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
     >
-      <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio}></WidgetComponent>
+      <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
       <div className={classes.bgMain}></div>
       <div className={classes.bgBlur}></div>
       <div className={classes.populated}>
@@ -137,8 +145,7 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
                   <span className={classes.title}>{item.name}</span>
                   <span>{item.message}</span>
                   <div className={classes.dateTime}>
-                    <span>October 22, 2023</span>
-                    <span>12:48 pm</span>
+                    <span>{moment(item.created_at).format('MMMM D, YYYY h:mm a')}</span>
                   </div>
                 </div>
                 )}
@@ -146,14 +153,6 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
                 <div className={classes.item}>
                   <span className={classes.title}>Ika</span>
                   <span>Selamat menapaki jalan baru bersama, dengan cinta sebagai panduan setiap langkahnya</span>
-                  <div className={classes.dateTime}>
-                    <span>October 22, 2023</span>
-                    <span>12:48 pm</span>
-                  </div>
-                </div>
-                <div className={classes.item}>
-                  <span className={classes.title}>Ika</span>
-                  <span>Selamat menempuh hidup baru bersama! mett nikahh weyy</span>
                   <div className={classes.dateTime}>
                     <span>October 22, 2023</span>
                     <span>12:48 pm</span>
@@ -177,23 +176,7 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
                 </div>
                 <div className={classes.item}>
                   <span className={classes.title}>Ika</span>
-                  <span>MaasyaaAllah, antum nikah?</span>
-                  <div className={classes.dateTime}>
-                    <span>October 22, 2023</span>
-                    <span>12:48 pm</span>
-                  </div>
-                </div>
-                <div className={classes.item}>
-                  <span className={classes.title}>Ika</span>
                   <span>بارك الله لكما وجعل بينكما مودة ورحمة آمين يا رب العالمين</span>
-                  <div className={classes.dateTime}>
-                    <span>October 22, 2023</span>
-                    <span>12:48 pm</span>
-                  </div>
-                </div>
-                <div className={classes.item}>
-                  <span className={classes.title}>Ika</span>
-                  <span>MaasyaaAllah, antum nikah?</span>
                   <div className={classes.dateTime}>
                     <span>October 22, 2023</span>
                     <span>12:48 pm</span>
@@ -272,7 +255,11 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio }) => {
                   </div>
   
                   <div className={classes.btnContent}>
-                    <button onClick={() => createComments()} type="submit" className={classes.btnExpand}>
+                    <button type="submit"
+                      className={classes.btnExpand}
+                      onClick={() => createComments()}
+                      disabled={onChangeDisabled()}
+                    >
                       <i className="fa-duotone fa-messages"></i>
                       <span>{sendWishText}</span>
                     </button>

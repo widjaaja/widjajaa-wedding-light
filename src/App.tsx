@@ -129,12 +129,12 @@ const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio, onS
   switch(activePages) {
 
     case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-    case "brides":   return <Bride name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
-    case "event": return <Event name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
-    case "location":  return <Location name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
-    case "protocol":  return <Protocol name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
-    case "gifts":  return <Gift name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
-    case "wish":  return <Wish name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
+    case "brides":   return <Bride name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "event": return <Event name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "location":  return <Location name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "protocol":  return <Protocol name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "gifts":  return <Gift name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "wish":  return <Wish name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
 
     default: return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
   }

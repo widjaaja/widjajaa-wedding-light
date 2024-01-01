@@ -259,6 +259,24 @@
         }
 
         .btnExpand{
+            &:disabled{
+                i {
+                    color: #535159 !important;
+                }
+                span {
+                    color: #535159 !important;
+                }
+                &:hover {
+                    border: none !important;
+                }
+                &::before{
+                    color: #535159 !important;
+
+                    border-radius: .5rem;
+                    background: #f3f1f4 !important;
+                    box-shadow: inset 0 0 0 60px #f3f1f4 !important;
+                }
+            }
             &::after{     
               border-radius: .5rem;
               box-shadow: inset 0 0 0 0px #535159;

@@ -6,6 +6,7 @@ interface BrideProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
 interface BrideState {
@@ -16,6 +17,7 @@ interface WidgetComponentProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
 const bounceTransition = {
@@ -32,7 +34,7 @@ const bounceTransition = {
   },
 }
 
-const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio }) => {
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   return (
     <motion.div 
       className={classes.WidgetComponent} 
@@ -47,7 +49,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
           transition={{ duration: 1, delay: 2 }}
           className={classes.item}
         >
-          <i className="fa-solid fa-maximize"></i>
+          <i onClick={() => onSetFullScreen()} className="fa-solid fa-maximize"></i>
         </motion.div >
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
@@ -67,7 +69,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio }) => {
+const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   // Component implementation
 
 
@@ -83,7 +85,7 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio }) => {
       transition={{ duration: 2 }}
     >
       <div className={classes.WidgetContainer}>
-        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio}></WidgetComponent>
+        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
         <div className={classes.populated}>
@@ -147,7 +149,7 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio }) => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 2.5 }}
               >
-                Magfira Fairuz
+                Magfira Fairuz S.H
               </motion.h3>
               <motion.span
                 initial={{ y: -20, opacity: 0 }}
@@ -175,14 +177,14 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio }) => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 2.5 }}
               >
-                Adjie Wijaya Kusuma
+                Adjie Wijaya Kusuma S.Kom
               </motion.h3 >
               <motion.span
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 3 }}
               >
-                Putra Pertama dari Bapak Bagus Purwoko dan Ibu Sumiati
+                Putra Pertama dari Bapak H. Bagus Purwoko dan Hj. Ibu Sumiati
               </motion.span>
             </div>
           </div>

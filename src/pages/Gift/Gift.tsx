@@ -11,6 +11,7 @@ interface GiftProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
 interface GiftState {
@@ -21,9 +22,10 @@ interface WidgetComponentProps {
   name: string;
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
+  onSetFullScreen: () => void;
 }
 
-const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio }) => {
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   return (
     <motion.div 
       className={classes.WidgetComponent} 
@@ -38,7 +40,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
           transition={{ duration: 1, delay: 2 }}
           className={classes.item}
         >
-          <i className="fa-solid fa-maximize"></i>
+          <i onClick={() => onSetFullScreen()} className="fa-solid fa-maximize"></i>
         </motion.div >
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
@@ -58,7 +60,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio }) => {
+const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   const listBank = {
     "jenius": {
       "kode": "213",
@@ -113,7 +115,7 @@ const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
     >
-      <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio}></WidgetComponent>
+      <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
       <div className={classes.bgMain}></div>
       <div className={classes.bgBlur}></div>
       <div className={classes.populated}>
