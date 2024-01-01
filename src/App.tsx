@@ -17,29 +17,39 @@ const birds = require("./assets/Audio/birds.mp3");
 
 interface AppState {
   activePages: string;
+  audio: boolean;
+  onSetAudio: (item: boolean) => void;
 }
 
 const AppRouter = () => {
   const [activePages, setActivePages] = useState<string>("wedding");
   const [isMobileView, setIsMobileView] = useState(false);
   const [isAnimating, setAnimating] = useState(false);
+  const [audioEl] = useState(new Audio(nasheed));
+  const [isAudio, setAudio] = useState(false);
+
   const bodyRef = useRef<any>(null);
-  const audioEl = new Audio(nasheed);
   const audioBirdEl = new Audio(birds);
 
   const handleSetActivePages = (message: string) => {
     setActivePages(message)
   };
+
+  const handleSetAudio = (item: boolean) => {
+    setAudio(item)
+  };
+  
   const handleSetAnimating = () => {
     enterFullscreen();
     setTimeout(() => {
-      // audioBirdEl.play();
-      // audioEl.play();
+      audioBirdEl.play();
+      audioEl.play();
+      setAudio(true)
       setAnimating(!isAnimating);
     }, 100);
     setTimeout(() => {
-      // audioBirdEl.pause();
-    }, 15000);
+      audioBirdEl.pause();
+    }, 10000);
   };
 
   const enterFullscreen = () => {
@@ -72,8 +82,18 @@ const AppRouter = () => {
     }
   };
 
+  useEffect(() => {
+      isAudio ? audioEl.play() : audioEl.pause();
+    },
+    [isAudio]
+  );
 
-
+  useEffect(() => {
+    audioEl.addEventListener('ended', () => setAudio(false));
+    return () => {
+      audioEl.removeEventListener('ended', () => setAudio(false));
+    };
+  }, []);
 
   useEffect(() => {
     // Do something when count changes
@@ -95,7 +115,7 @@ const AppRouter = () => {
         <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
         {isAnimating &&
           <div className='content'>
-            <MainComponent activePages={activePages}/>
+            <MainComponent activePages={activePages} audio={isAudio} onSetAudio={handleSetAudio} />
             <NavbarPages onNavClick={handleSetActivePages} activeNav={activePages}/>
           </div>
         }
@@ -104,10 +124,10 @@ const AppRouter = () => {
   );
 };
 
-const MainComponent: React.FC<AppState> = ({ activePages }) => {
+const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio }) => {
   switch(activePages) {
 
-    case "wedding":   return <Home name={'name'}/>;
+    case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
     case "brides":   return <Bride name={'name'}/>;
     case "event": return <Event name={'name'}/>;
     case "location":  return <Location name={'name'}/>;
@@ -115,7 +135,7 @@ const MainComponent: React.FC<AppState> = ({ activePages }) => {
     case "gifts":  return <Gift name={'name'}/>;
     case "wish":  return <Wish name={'name'}/>;
 
-    default:      return <Home name={'name'}/>;
+    default:      return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio}/>;
   }
 }
 

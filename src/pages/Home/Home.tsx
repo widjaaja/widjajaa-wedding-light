@@ -5,6 +5,8 @@ import classes from './Home.module.scss';
 
 interface HomeProps {
   name: string;
+  isAudio: boolean;
+  onSetAudio: (item: boolean) => void;
 }
 
 interface HomeState {
@@ -13,9 +15,11 @@ interface HomeState {
 
 interface WidgetComponentProps {
   name: string;
+  isAudio: boolean;
+  onSetAudio: (item: boolean) => void;
 }
 
-const WidgetComponent: React.FC<WidgetComponentProps> = ({ name }) => {
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio }) => {
   return (
     <motion.div 
       className={classes.WidgetComponent} 
@@ -28,14 +32,19 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name }) => {
           <i className="fa-solid fa-maximize"></i>
         </div>
         <div className={classes.item}>
-          <i className="fa-solid fa-volume"></i>
+          {isAudio ? 
+            <i onClick={() => onSetAudio(false)} className="fa-solid fa-volume"></i>
+            :
+            <i onClick={() => onSetAudio(true)}  className="fa-solid fa-volume-slash"></i>
+          }
+          
         </div>
       </div>
     </motion.div>
   )
 }
 
-const Home: React.FC<HomeProps> = ({ name }) => {
+const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio }) => {
   // Component implementation
 
   useEffect(() => {
@@ -51,7 +60,7 @@ const Home: React.FC<HomeProps> = ({ name }) => {
       transition={{ duration: 2 }}
     >
       <div className={classes.WidgetContainer}>
-        <WidgetComponent name={'name'}></WidgetComponent>
+        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
         <div className="bird-container bird-container--one">
