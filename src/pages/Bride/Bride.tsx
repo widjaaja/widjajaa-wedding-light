@@ -156,7 +156,7 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScree
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 3 }}
               >
-                Putri Kedua dari Bapak Bangbang Setiawan dan Ibu Tety Nurhayati
+                Putri Kedua dari Bapak Ir. Bangbang Setiawan dan Ibu Tety Nurhayati
               </motion.span>
             </div>
             <motion.i 
