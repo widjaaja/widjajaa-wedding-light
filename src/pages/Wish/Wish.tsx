@@ -63,7 +63,7 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
     name: '',
     message: '',
     presence: '', //hadir, tidakHadir, BelumPasti
-    guest_id: ''
+    guest_id: null
   });
   
   let search = window.location.search;
@@ -128,12 +128,12 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
     getComments();
 
     window.setTimeout(() => {
-      setFields({
+      setFields((fields) => ({
+        ...fields,
         name: '',
         message: '',
         presence: '',
-        guest_id: ''
-      })
+      }));
       setSendWishText('Kirim Ucapan');
       setActiveCommentForm(false);
     }, 1000);
