@@ -12,15 +12,39 @@ interface CoverPagesProps {
   isAnimate: boolean;
 }
 
+interface CoverPagesDeviceProps {
+  name: string;
+  onInvitationClick: () => void;
+  isAnimate: boolean;
+  guest: string;
+}
+
 const CoverPages: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationClick }) => {
   // Component implementation
   const [isMobileView, setIsMobileView] = useState(false);
+  const [guestData, setGuestData] = useState('Tamu Undangan');
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+
+  const getGuestInvitation = async () => { 
+    const { data } = await supabase.from("guests").select().eq('slug', params.get('to'));
+    console.log(data);
+    
+    if (Array.isArray(data) && data.length > 0) {
+      setGuestData(data[0].name)
+    }
+  }
 
   const asideAttr = isMobileView && {
     initial: { display: 'flex', },
     animate: { display: !isAnimate ? "flex" : "none",},
     transition: { duration: 1, delay: 3 },
   };
+
+  useEffect(() => {
+    // Do something when count changes
+    getGuestInvitation()
+  }, []);
 
   useEffect(() => {
     // Do something when count changes
@@ -40,9 +64,19 @@ const CoverPages: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationCl
   return (
     <motion.aside {...asideAttr}>
       {!isMobileView ?
-        <CoverPagesDesktop name={'desktop'} isAnimate={isAnimate} onInvitationClick={onInvitationClick} />
+        <CoverPagesDesktop 
+          name={'desktop'} 
+          isAnimate={isAnimate} 
+          onInvitationClick={onInvitationClick} 
+          guest={guestData}
+        />
         :
-        <CoverPagesMobile name={'mobile'} isAnimate={isAnimate} onInvitationClick={onInvitationClick} />
+        <CoverPagesMobile 
+          name={'mobile'} 
+          isAnimate={isAnimate} 
+          onInvitationClick={onInvitationClick} 
+          guest={guestData}
+        />
       }
 
     </motion.aside>
@@ -51,26 +85,7 @@ const CoverPages: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationCl
 }
 
 
-const CoverPagesDesktop: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationClick }) => {
-  const [guestData, setGuestData] = useState({name: 'Tamu Undangan'});
-  let search = window.location.search;
-  let params = new URLSearchParams(search);
-
-  useEffect(() => {
-    // Do something when count changes
-    getGuestInvitation()
-  }, []);
-
-  const getGuestInvitation = async () => {
-    
-    const { data } = await supabase.from("guests").select().eq('id', params.get('to'));
-    console.log(data, 'guest');
-    if (Array.isArray(data)) {
-      console.log(data, 'masook');
-      setGuestData(data[0])
-    }
-    
-  }
+const CoverPagesDesktop: React.FC<CoverPagesDeviceProps> = ({ name, isAnimate, onInvitationClick, guest }) => {
 
   return (
     <motion.div 
@@ -85,7 +100,7 @@ const CoverPagesDesktop: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvit
       <div className={classes.widgetWrap}>
         <h3>You Are Invited!</h3>
         <span className={classes.description}>Bapak/Ibu/Saudara/i</span>
-        <span className={classes.guest}>{guestData.name}</span>
+        <span className={classes.guest}>{guest}</span>
         <div className={classes.buttonContent}>
           <AnimatePresence mode='sync'>
             {!isAnimate && 
@@ -107,8 +122,7 @@ const CoverPagesDesktop: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvit
   );
 }
 
-const CoverPagesMobile: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationClick }) => {
-
+const CoverPagesMobile: React.FC<CoverPagesDeviceProps> = ({ name, isAnimate, onInvitationClick, guest }) => {
   return (
     <motion.div 
       className={classes.CoverPagesContainerMob}
@@ -121,7 +135,7 @@ const CoverPagesMobile: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvita
       <div className={classes.widgetWrap}>
         <h3>You Are Invited!</h3>
         <span className={classes.description}>Bapak/Ibu/Saudara/i</span>
-        <span className={classes.guest}>Tamu Undangan</span>
+        <span className={classes.guest}>{guest}</span>
         <AnimatePresence mode='sync'>
           {!isAnimate && 
             <motion.button 
