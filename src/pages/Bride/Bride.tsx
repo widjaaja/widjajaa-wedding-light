@@ -149,7 +149,7 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScree
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 2.5 }}
               >
-                Magfira Fairuz S.H
+                Magfira Fairuz, S.H
               </motion.h3>
               <motion.span
                 initial={{ y: -20, opacity: 0 }}
@@ -177,7 +177,7 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScree
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 2.5 }}
               >
-                Adjie Wijaya Kusuma S.Kom
+                Adjie Wijaya Kusuma, S.Kom
               </motion.h3 >
               <motion.span
                 initial={{ y: -20, opacity: 0 }}

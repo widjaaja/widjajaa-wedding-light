@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence , motion } from "framer-motion"
+import supabase from "../../supabase";
+
 import classes from './CoverPages.module.scss';
 
 import CoverParticles from "../CoverParticles/CoverParticles";
@@ -50,6 +52,25 @@ const CoverPages: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationCl
 
 
 const CoverPagesDesktop: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvitationClick }) => {
+  const [guestData, setGuestData] = useState({name: 'Tamu Undangan'});
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+
+  useEffect(() => {
+    // Do something when count changes
+    getGuestInvitation()
+  }, []);
+
+  const getGuestInvitation = async () => {
+    
+    const { data } = await supabase.from("guests").select().eq('id', params.get('to'));
+    console.log(data, 'guest');
+    if (Array.isArray(data)) {
+      console.log(data, 'masook');
+      setGuestData(data[0])
+    }
+    
+  }
 
   return (
     <motion.div 
@@ -64,7 +85,7 @@ const CoverPagesDesktop: React.FC<CoverPagesProps> = ({ name, isAnimate, onInvit
       <div className={classes.widgetWrap}>
         <h3>You Are Invited!</h3>
         <span className={classes.description}>Bapak/Ibu/Saudara/i</span>
-        <span className={classes.guest}>Tamu Undangan</span>
+        <span className={classes.guest}>{guestData.name}</span>
         <div className={classes.buttonContent}>
           <AnimatePresence mode='sync'>
             {!isAnimate && 
