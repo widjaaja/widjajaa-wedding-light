@@ -3,10 +3,7 @@ import moment from 'moment';
 import { AnimatePresence , motion } from "framer-motion"
 import supabase from "../../supabase";
 
-
 import classes from './Wish.module.scss';
-import { setTimeout } from 'timers/promises';
-import { log } from 'util';
 
 interface WishProps {
   name: string;
@@ -66,14 +63,38 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
     name: '',
     message: '',
     presence: '', //hadir, tidakHadir, BelumPasti
+    guest_id: ''
   });
+  
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+
   useEffect(() => {
     // Do something when count changes
+    getGuestInvitation()
     getComments()
   }, []);
 
+  const getGuestInvitation = async () => { 
+    const { data } = await supabase.from("guests").select().eq('slug', params.get('to'));
+    console.log(data);
+    
+    if (Array.isArray(data) && data.length > 0) {
+      setFields({
+        name: '',
+        message: '',
+        presence: '',
+        guest_id: data[0].id
+      })
+      
+    }
+  }
+
   const getComments = async () => {
-    const { data } = await supabase.from("comments").select().order('created_at', { ascending: false });
+    const { data } = await supabase
+      .from("comments")
+      .select("id, created_at, name, message, presence, guests (id, name)")
+      .order('created_at', { ascending: false });
 
     if (Array.isArray(data)) {
       console.log(data, 'masook');
@@ -111,6 +132,7 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
         name: '',
         message: '',
         presence: '',
+        guest_id: ''
       })
       setSendWishText('Kirim Ucapan');
       setActiveCommentForm(false);
