@@ -36,7 +36,7 @@ const AppRouter = () => {
 
   const handleSetSwipePages = (message: string, pos: string) => {
     handleSetActivePages(message);
-    navRef.current.handleScroll(pos);
+    navRef.current.handleScroll(message, pos);
   };
 
   const handleSetActivePages = (message: string) => {

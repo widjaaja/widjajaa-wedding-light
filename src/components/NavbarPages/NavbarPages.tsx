@@ -24,35 +24,11 @@ const NavbarPages: React.FC<NavbarPagesProps> = forwardRef(({ onNavClick, active
 
   useImperativeHandle(ref, () => ({
 
-    handleScroll(pos: string) {
-      const el = scrollRef.current;
-
-      switch (pos) {
-        case 'left':
-          el.scrollTo({
-            left: el.scrollRight + 50,
-            behavior: "smooth"
-          });
-          break;
-  
-        case 'right':
-            el.scrollTo({
-              left: el.scrollLeft + 100,
-              behavior: "smooth"
-            });
-          break;
-      
-        default:
-          break;
-      }
+    handleScroll(message: string, pos: string) {
+      handleNavClick(message, pos)
     }
 
   }));
-
-  const showScroll = (e: any) => {
-    const right = e.target.scrollWidth - e.target.scrollLeft === e.target.clientWidth;
-    console.log(`scrollLeft = ${right}`);
-  };
 
   const handleNavClick = (message: string, pos: string) => {
     const el = scrollRef.current;
