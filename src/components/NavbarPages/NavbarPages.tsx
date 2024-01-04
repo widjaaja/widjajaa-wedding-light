@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef, Ref } from 'react';
 import classes from './NavbarPages.module.scss';
-import { log } from 'console';
 
 interface NavbarPagesProps {
   onNavClick: (message: string) => void;
   activeNav: string;
+  ref?: Ref<any>;
 }
 
 interface DraggableProps {
@@ -17,10 +17,37 @@ interface NavbarPagesState {
   name: string;
 }
 
-const NavbarPages: React.FC<NavbarPagesProps> = ({ onNavClick, activeNav }) => {
+const NavbarPages: React.FC<NavbarPagesProps> = forwardRef(({ onNavClick, activeNav }, ref) => {
   // Component implementation
   const dragRef = useRef<any>(null);
   const scrollRef = useRef<any>(null);
+
+  useImperativeHandle(ref, () => ({
+
+    handleScroll(pos: string) {
+      const el = scrollRef.current;
+
+      switch (pos) {
+        case 'left':
+          el.scrollTo({
+            left: el.scrollRight + 50,
+            behavior: "smooth"
+          });
+          break;
+  
+        case 'right':
+            el.scrollTo({
+              left: el.scrollLeft + 100,
+              behavior: "smooth"
+            });
+          break;
+      
+        default:
+          break;
+      }
+    }
+
+  }));
 
   const showScroll = (e: any) => {
     const right = e.target.scrollWidth - e.target.scrollLeft === e.target.clientWidth;
@@ -90,7 +117,7 @@ const NavbarPages: React.FC<NavbarPagesProps> = ({ onNavClick, activeNav }) => {
         </div>
     </Draggable>
   );
-}
+});
 
 const Draggable: React.FC<DraggableProps> = ({ innerRef, rootClass = "", children }) => {
   const ourRef = useRef<any>(null);

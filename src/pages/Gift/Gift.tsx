@@ -12,6 +12,7 @@ interface GiftProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+  onNavSwipe: (item: string, pos: string) => void;
 }
 
 interface GiftState {
@@ -23,6 +24,11 @@ interface WidgetComponentProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+}
+
+interface swipeDirectionProps {
+  initialX: number;
+  initialY: number;
 }
 
 const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
@@ -60,7 +66,7 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
+const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   const listBank = {
     "jenius": {
       "kode": "213",
@@ -85,7 +91,40 @@ const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
   const [activeBank, setActiveBank] = useState<string>('jenius');
   const [selectedBankDetail, setSelectedBankDetail] = useState<any>({});
   const [copyText, setCopyText] = useState<string>('Copy');
-  
+  const [swipeDirection, setSwipeDirection] = useState<swipeDirectionProps>({
+    initialX: 0,
+    initialY: 0
+  });
+
+  const handleTouchStart = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    setSwipeDirection({ initialX: touchObj.clientX, initialY: touchObj.clientY });
+  };
+
+  const handleTouchMove = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    const deltaX = swipeDirection.initialX - touchObj.clientX;
+    const deltaY = swipeDirection.initialY - touchObj.clientY;
+
+    setTimeout(() => {
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        // vertical swipe detected
+        if (deltaY > 0) {
+          onNavSwipe('wish', 'right')
+          // setSwipeDirection('up');
+        } else {
+          onNavSwipe('protocol', 'right')
+          // setSwipeDirection('down');
+        }
+      }       
+    }, 500);
+
+  };
+
+  const handleTouchEnd = () => {
+    setSwipeDirection({ initialX: 0, initialY: 0 });
+  };
+
   useEffect(() => {
     // Do something when count changes
     setSelectedBankDetail(listBank.jenius)
@@ -118,7 +157,12 @@ const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
       <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
       <div className={classes.bgMain}></div>
       <div className={classes.bgBlur}></div>
-      <div className={classes.populated}>
+      <div 
+        className={classes.populated}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className={classes.widgetWrap}>
           <div className={classes.GiftContent}>
             <div className={classes.initialContent}>

@@ -20,6 +20,7 @@ interface AppState {
   audio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+  onNavSwipe: (item: string, pos: string) => void;
 }
 
 const AppRouter = () => {
@@ -29,8 +30,14 @@ const AppRouter = () => {
   const [audioEl] = useState(new Audio(nasheed));
   const [isAudio, setAudio] = useState(false);
 
+  const navRef = useRef<any>(null);
   const bodyRef = useRef<any>(null);
   const audioBirdEl = new Audio(birds);
+
+  const handleSetSwipePages = (message: string, pos: string) => {
+    handleSetActivePages(message);
+    navRef.current.handleScroll(pos);
+  };
 
   const handleSetActivePages = (message: string) => {
     setActivePages(message)
@@ -116,8 +123,8 @@ const AppRouter = () => {
         <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
         {isAnimating &&
           <div className='content'>
-            <MainComponent activePages={activePages} audio={isAudio} onSetAudio={handleSetAudio} onSetFullScreen={handleFullscreen} />
-            <NavbarPages onNavClick={handleSetActivePages} activeNav={activePages}/>
+            <MainComponent activePages={activePages} audio={isAudio} onSetAudio={handleSetAudio} onSetFullScreen={handleFullscreen} onNavSwipe={handleSetSwipePages} />
+            <NavbarPages ref={navRef} onNavClick={handleSetActivePages} activeNav={activePages}/>
           </div>
         }
       </div>
@@ -125,18 +132,18 @@ const AppRouter = () => {
   );
 };
 
-const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio, onSetFullScreen }) => {
+const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   switch(activePages) {
 
-    case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-    case "brides":   return <Bride name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-    case "event": return <Event name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-    case "location":  return <Location name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-    case "protocol":  return <Protocol name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-    case "gifts":  return <Gift name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
+    case "brides":   return <Bride name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
+    case "event": return <Event name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
+    case "location":  return <Location name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
+    case "protocol":  return <Protocol name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
+    case "gifts":  return <Gift name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
     case "wish":  return <Wish name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
 
-    default: return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
+    default: return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
   }
 }
 

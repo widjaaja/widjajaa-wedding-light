@@ -1,4 +1,4 @@
-import React, { useEffect  } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import classes from './Bride.module.scss';
 
@@ -7,6 +7,7 @@ interface BrideProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+  onNavSwipe: (item: string, pos: string) => void;
 }
 
 interface BrideState {
@@ -18,6 +19,11 @@ interface WidgetComponentProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+}
+
+interface swipeDirectionProps {
+  initialX: number;
+  initialY: number;
 }
 
 const bounceTransition = {
@@ -69,9 +75,41 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
+const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   // Component implementation
+  const [swipeDirection, setSwipeDirection] = useState<swipeDirectionProps>({
+    initialX: 0,
+    initialY: 0
+  });
 
+  const handleTouchStart = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    setSwipeDirection({ initialX: touchObj.clientX, initialY: touchObj.clientY });
+  };
+
+ const handleTouchMove = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    const deltaX = swipeDirection.initialX - touchObj.clientX;
+    const deltaY = swipeDirection.initialY - touchObj.clientY;
+
+    setTimeout(() => {
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        // vertical swipe detected
+        if (deltaY > 0) {
+          onNavSwipe('event', 'left')
+          // setSwipeDirection('up');
+        } else {
+          onNavSwipe('wedding', 'left')
+          // setSwipeDirection('down');
+        }
+      }       
+    }, 500);
+
+ };
+
+ const handleTouchEnd = () => {
+    setSwipeDirection({ initialX: 0, initialY: 0 });
+ };
 
   useEffect(() => {
   }, []);
@@ -88,7 +126,12 @@ const Bride: React.FC<BrideProps> = ({ name, isAudio, onSetAudio, onSetFullScree
         <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
-        <div className={classes.populated}>
+        <div 
+          className={classes.populated}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className={classes.widgetWrap}>
             <motion.img 
               initial={{ y: 20, opacity: 0 }}

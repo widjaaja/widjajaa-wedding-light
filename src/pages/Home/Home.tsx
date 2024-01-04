@@ -1,4 +1,4 @@
-import React, { useEffect  } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 
 import classes from './Home.module.scss';
@@ -8,6 +8,7 @@ interface HomeProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+  onNavSwipe: (item: string, pos: string) => void;
 }
 
 interface HomeState {
@@ -19,6 +20,11 @@ interface WidgetComponentProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+}
+
+interface swipeDirectionProps {
+  initialX: number;
+  initialY: number;
 }
 
 const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
@@ -56,9 +62,41 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
+const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   // Component implementation
+  const [swipeDirection, setSwipeDirection] = useState<swipeDirectionProps>({
+    initialX: 0,
+    initialY: 0
+  });
 
+  const handleTouchStart = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    setSwipeDirection({ initialX: touchObj.clientX, initialY: touchObj.clientY });
+ };
+
+ const handleTouchMove = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    const deltaX = swipeDirection.initialX - touchObj.clientX;
+    const deltaY = swipeDirection.initialY - touchObj.clientY;
+
+    setTimeout(() => {
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        // vertical swipe detected
+        if (deltaY > 0) {
+          onNavSwipe('brides', 'left')
+          // setSwipeDirection('up');
+        } else {
+          onNavSwipe('wedding', 'left')
+          // setSwipeDirection('down');
+        }
+      }       
+    }, 500);
+
+ };
+
+ const handleTouchEnd = () => {
+    setSwipeDirection({ initialX: 0, initialY: 0 });
+ };
   useEffect(() => {
     // Do something when count changes
   }, []);
@@ -90,7 +128,12 @@ const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
         <div className="bird-container bird-container--four">
           <div className="bird bird--four"></div>
         </div>
-        <div className={classes.populated}>
+        <div 
+          className={classes.populated}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className={classes.widgetWrap}>
             <motion.h4
               initial={{ y: -50, opacity: 0 }}
@@ -123,14 +166,36 @@ const Home: React.FC<HomeProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
             >
               Adjie
             </motion.span>
-            <motion.p
+            <motion.div
+              className={classes.date}
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 2 }}
             >
-              03 . 02 . 2024
-            </motion.p>
+              <p className={classes.title}>SAVE THE DATE</p>
+              <p className={classes.desc}>03 . 02 . 2024</p>
+            </motion.div>
+
           </div>
+          <motion.div 
+            className={classes.swipeContainer}
+            initial={{ y: 50, opacity: 0, transform: "translateX(-50%)" }}
+            animate={{ y: 0, opacity: 1, transform: "translateX(-50%)" }}
+            transition={{ duration: 2, delay: 3 }}
+          >
+            <div className={classes.swipeContent}>
+              <motion.i 
+                animate={{ y: [-5, 5] }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  repeatType: 'reverse'
+                }}
+                className="fa-light fa-hand-pointer"
+              ></motion.i>
+              <span>SWIPE UP</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.div>

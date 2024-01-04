@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { motion } from "framer-motion";
 
@@ -9,6 +9,7 @@ interface LocationProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+  onNavSwipe: (item: string, pos: string) => void;
 }
 
 interface LocationState {
@@ -20,6 +21,11 @@ interface WidgetComponentProps {
   isAudio: boolean;
   onSetAudio: (item: boolean) => void;
   onSetFullScreen: () => void;
+}
+
+interface swipeDirectionProps {
+  initialX: number;
+  initialY: number;
 }
 
 const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
@@ -57,8 +63,42 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
   )
 }
 
-const Location: React.FC<LocationProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
+const Location: React.FC<LocationProps> = ({ name, isAudio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   // Component implementation
+  const [swipeDirection, setSwipeDirection] = useState<swipeDirectionProps>({
+    initialX: 0,
+    initialY: 0
+  });
+
+  const handleTouchStart = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    setSwipeDirection({ initialX: touchObj.clientX, initialY: touchObj.clientY });
+  };
+
+  const handleTouchMove = (e: any) => {
+    const touchObj = e.targetTouches[0];
+    const deltaX = swipeDirection.initialX - touchObj.clientX;
+    const deltaY = swipeDirection.initialY - touchObj.clientY;
+
+    setTimeout(() => {
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        // vertical swipe detected
+        if (deltaY > 0) {
+          onNavSwipe('protocol', 'right')
+          // setSwipeDirection('up');
+        } else {
+          onNavSwipe('event', 'left')
+          // setSwipeDirection('down');
+        }
+      }       
+    }, 500);
+
+  };
+
+  const handleTouchEnd = () => {
+    setSwipeDirection({ initialX: 0, initialY: 0 });
+  };
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAnEMJbJHhbSYVLkk6nBweHMgvMjukihGA',
   });
@@ -71,6 +111,10 @@ const Location: React.FC<LocationProps> = ({ name, isAudio, onSetAudio, onSetFul
     scale: .1,
   };
 
+  useEffect(() => {
+    // Do something when count changes
+  }, []);
+
   return (
     <motion.div
      className={classes.LocationContainer}      
@@ -82,7 +126,12 @@ const Location: React.FC<LocationProps> = ({ name, isAudio, onSetAudio, onSetFul
       <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
       <div className={classes.bgMain}></div>
       <div className={classes.bgBlur}></div>
-      <div className={classes.populated}>
+      <div 
+        className={classes.populated}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className={classes.widgetWrap}>
           {!isLoaded ? (
             <LoadingComponent/>

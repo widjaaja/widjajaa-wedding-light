@@ -50,6 +50,7 @@
                 margin: auto;
                 bottom: 50px;
                 h4 {
+                    user-select: none;
                     font-family: "Cycles Eleven", Sans-serif;
                     font-size: 1.1rem;
                     font-weight: bold;
@@ -59,16 +60,34 @@
                     color: #302d3b;
                     margin-bottom: 2rem;
                 }
-                p {
-                    font-family: "Andis", Sans-serif;
-                    text-align: center;
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    color: #302d3b;
+                .date {
+                    user-select: none;
+                    border-radius: 100%;
+                    background: rgba(255, 255, 255, 0.25);
                     margin-top: 2rem;
+                    .title {
+                        font-family: "Andis", Sans-serif;
+                        text-align: center;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                        text-transform: uppercase;
+                        color: #302d3b;
+                        margin: 0;
+                    }
+                    .desc {
+                        font-family: "Andis", Sans-serif;
+                        text-align: center;
+                        font-size: 1.5rem;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        color: #302d3b;
+                        margin: 0;
+                    }
                 }
+
                 span {
+                    user-select: none;
                     font-family: "Murray Hill", Sans-serif;
                     font-size: 3.5rem;
                     line-height: 0.75; 
@@ -89,6 +108,33 @@
                         color: #302d3b;
                         font-size: 2rem !important;
                         margin: 1rem auto;
+                    }
+                }
+            }
+
+            .swipeContainer {
+                position: absolute;
+                bottom: 32px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                transform: translateX(-50%);
+                .swipeContent {
+                    display: flex;
+                    flex-direction: column;
+                    background: rgba(255, 255, 255, 0.05);
+                    i {
+                        font-size: 1.5rem;
+                        color: #302d3b;
+                        text-align: center;
+                    }
+                    span {
+                        font-size: .75rem;
+                        font-weight: bold;
+                        color: #302d3b;
+                        letter-spacing: 2px;
+                        text-align: center;
+                        margin-top: .75rem;
                     }
                 }
             }
