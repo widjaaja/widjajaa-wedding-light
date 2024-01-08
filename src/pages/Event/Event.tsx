@@ -177,6 +177,14 @@ const Event: React.FC<EventProps> = ({ name, isAudio, onSetAudio, onSetFullScree
                 >
                   PUKUL 08.30 - 10.00 WIB
                 </motion.span>
+                <motion.span
+                  className={classes.note}
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2, delay: 2.5 }}
+                >
+                  (Hanya di hadiri Keluarga)
+                </motion.span>
               </div>
               <div className={classes.eventContent}>
                 <motion.span 
