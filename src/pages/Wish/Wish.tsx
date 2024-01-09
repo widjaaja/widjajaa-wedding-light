@@ -172,7 +172,7 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
                 </div>
                 )}
 
-                <div className={classes.item}>
+                {/* <div className={classes.item}>
                   <span className={classes.title}>Ika</span>
                   <span>Selamat menapaki jalan baru bersama, dengan cinta sebagai panduan setiap langkahnya</span>
                   <div className={classes.dateTime}>
@@ -211,7 +211,8 @@ const Wish: React.FC<WishProps> = ({ name, isAudio, onSetAudio, onSetFullScreen 
                     <span>October 22, 2023</span>
                     <span>12:48 pm</span>
                   </div>
-                </div>
+                </div> */}
+
               </div>
             </div>
             <div className={classes.btnContent}>

@@ -69,16 +69,19 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetA
 const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   const listBank = {
     "jenius": {
+      "bank": "Bank Tabungan Pensiunan Nasional",
       "kode": "213",
       "norek": "90300229580",
       "nama": "Adjie Wijaya Kusuma"
     },
     "mandiri": {
+      "bank": "Bank Mandiri",
       "kode": "008",
       "norek": "1260009790360",
       "nama": "Magfira Fairuz"
     },
     "hijra": {
+      "bank": "Bank Danamon",
       "kode": "722",
       "norek": "7800110100148547",
       "nama": "Magfira Fairuz"
@@ -270,6 +273,7 @@ const Gift: React.FC<GiftProps> = ({ name, isAudio, onSetAudio, onSetFullScreen,
                         <div className={classes.amplopDigitalContent}>
                           <div className={classes.listBank}>
                             <div className={classes.bankDetail}>
+                            <span>({selectedBankDetail.bank})</span>
                               <span>Kode Bank ({selectedBankDetail.kode})</span>
                               <span>No. Rekening {selectedBankDetail.norek}</span>
                               <span>a.n. {selectedBankDetail.nama}</span>
