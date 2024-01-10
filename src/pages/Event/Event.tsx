@@ -175,7 +175,7 @@ const Event: React.FC<EventProps> = ({ name, isAudio, onSetAudio, onSetFullScree
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 2, delay: 2.5 }}
                 >
-                  PUKUL 08.30 - 10.00 WIB
+                  PUKUL 08.00 - 10.00 WIB
                 </motion.span>
                 <motion.span
                   className={classes.note}
