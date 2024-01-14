@@ -26,7 +26,6 @@ interface NavbarPagesState {
 
 const NavbarPages: React.FC<NavbarPagesProps> = forwardRef(
   ({ onNavClick, activeNav }, ref) => {
-    // Component implementation
     const dragRef = useRef<any>(null);
     const scrollRef = useRef<any>(null);
 
