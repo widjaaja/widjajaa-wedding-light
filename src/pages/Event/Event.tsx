@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 
-import classes from "./Event.module.scss";
+import classes from './Event.module.scss';
 
 interface EventProps {
   name: string;
@@ -27,72 +27,51 @@ interface swipeDirectionProps {
   initialY: number;
 }
 
-const WidgetComponent: React.FC<WidgetComponentProps> = ({
-  name,
-  isAudio,
-  onSetAudio,
-  onSetFullScreen,
-}) => {
+const WidgetComponent: React.FC<WidgetComponentProps> = ({ name, isAudio, onSetAudio, onSetFullScreen }) => {
   return (
-    <motion.div
-      className={classes.WidgetComponent}
+    <motion.div 
+      className={classes.WidgetComponent} 
       initial={{ opacity: 1 }}
       transition={{ duration: 2, delay: 1 }}
     >
       <div className={classes.listWidget}>
-        <motion.div
+
+        <motion.div 
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
           className={classes.item}
         >
-          <i
-            onClick={() => onSetFullScreen()}
-            className="fa-solid fa-maximize"
-          ></i>
-        </motion.div>
-        <motion.div
+          <i onClick={() => onSetFullScreen()} className="fa-solid fa-maximize"></i>
+        </motion.div >
+        <motion.div 
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
           className={classes.item}
         >
-          {isAudio ? (
-            <i
-              onClick={() => onSetAudio(false)}
-              className="fa-solid fa-volume"
-            ></i>
-          ) : (
-            <i
-              onClick={() => onSetAudio(true)}
-              className="fa-solid fa-volume-slash"
-            ></i>
-          )}
+          {isAudio ? 
+            <i onClick={() => onSetAudio(false)} className="fa-solid fa-volume"></i>
+            :
+            <i onClick={() => onSetAudio(true)}  className="fa-solid fa-volume-slash"></i>
+          }
+          
         </motion.div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-const Event: React.FC<EventProps> = ({
-  name,
-  isAudio,
-  onSetAudio,
-  onSetFullScreen,
-  onNavSwipe,
-}) => {
+const Event: React.FC<EventProps> = ({ name, isAudio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
   // Component implementation
   const [swipeDirection, setSwipeDirection] = useState<swipeDirectionProps>({
     initialX: 0,
-    initialY: 0,
+    initialY: 0
   });
 
   const handleTouchStart = (e: any) => {
     const touchObj = e.targetTouches[0];
-    setSwipeDirection({
-      initialX: touchObj.clientX,
-      initialY: touchObj.clientY,
-    });
+    setSwipeDirection({ initialX: touchObj.clientX, initialY: touchObj.clientY });
   };
 
   const handleTouchMove = (e: any) => {
@@ -104,14 +83,15 @@ const Event: React.FC<EventProps> = ({
       if (Math.abs(deltaY) > Math.abs(deltaX)) {
         // vertical swipe detected
         if (deltaY > 0) {
-          onNavSwipe("location", "right");
+          onNavSwipe('location', 'right')
           // setSwipeDirection('up');
         } else {
-          onNavSwipe("brides", "left");
+          onNavSwipe('brides', 'left')
           // setSwipeDirection('down');
         }
-      }
+      }       
     }, 500);
+
   };
 
   const handleTouchEnd = () => {
@@ -123,7 +103,7 @@ const Event: React.FC<EventProps> = ({
   }, []);
 
   return (
-    <motion.div
+    <motion.div  
       className={classes.EventContainer}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -131,53 +111,45 @@ const Event: React.FC<EventProps> = ({
       transition={{ duration: 2 }}
     >
       <div className={classes.WidgetContainer}>
-        <WidgetComponent
-          name={"name"}
-          isAudio={isAudio}
-          onSetAudio={onSetAudio}
-          onSetFullScreen={onSetFullScreen}
-        ></WidgetComponent>
+        <WidgetComponent name={'name'} isAudio={isAudio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}></WidgetComponent>
         <div className={classes.bgMain}></div>
         <div className={classes.bgBlur}></div>
-        <div
+        <div 
           className={classes.populated}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
           <div className={classes.widgetWrap}>
-            <motion.img
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 2, delay: 1 }}
-              className={classes.imgFlower}
-              src="https://invetin.id/wp-content/uploads/2021/03/bouquet.png"
-              alt=""
-            />
+          <motion.img 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 2, delay: 1 }}
+            className={classes.imgFlower} 
+            src="https://invetin.id/wp-content/uploads/2021/03/bouquet.png" alt="" 
+          />
             <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 1 }}
               className={classes.dateContent}
             >
-              <motion.div
+              <motion.div 
                 initial={{ x: 50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 1.5 }}
-                className={classes.left}
-              >
+                className={classes.left}>
                 <span>SABTU</span>
               </motion.div>
               <motion.div className={classes.center}>
                 <h5>FEB</h5>
-                <span>10</span>
+                <span>03</span>
               </motion.div>
-              <motion.div
+              <motion.div 
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 2, delay: 1.5 }}
-                className={classes.right}
-              >
+                className={classes.right}>
                 <span>2024</span>
               </motion.div>
             </motion.div>
@@ -185,36 +157,37 @@ const Event: React.FC<EventProps> = ({
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1.5, delay: 1.5 }}
-              className={classes.locationContent}
-            >
-              <span>
-                <i className="fa-solid fa-map-location-dot"></i>RUMAH MEMPELAI
-                PRIA
-              </span>
-              <span>
-                PERUM BUANA GARDENIA BLOK C3 NO 50, PINANG, KOTA TANGERANG,
-                BANTEN{" "}
-              </span>
+              className={classes.locationContent}>
+              <span><i className="fa-solid fa-map-location-dot"></i>VILLA SADDAK BANDUNG</span>
+              <span>JL. BUKIT PAKAR TIMUR No.76, KABUPATEN BANDUNG </span>
 
               <div className={classes.eventContent}>
-                <motion.span
+                <motion.span 
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 2, delay: 2.5 }}
                   className={classes.title}
                 >
-                  Ngunduh Mantu
+                  Akad Nikah
                 </motion.span>
                 <motion.span
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 2, delay: 2.5 }}
                 >
-                  PUKUL 10.00 - 17.00 WIB
+                  PUKUL 08.00 - 10.00 WIB
+                </motion.span>
+                <motion.span
+                  className={classes.note}
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 2, delay: 2.5 }}
+                >
+                  (Hanya di hadiri Keluarga)
                 </motion.span>
               </div>
-              {/* <div className={classes.eventContent}>
-                <motion.span
+              <div className={classes.eventContent}>
+                <motion.span 
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 2, delay: 3 }}
@@ -229,19 +202,15 @@ const Event: React.FC<EventProps> = ({
                 >
                   PUKUL 11.00 – 14.00 WIB
                 </motion.span>
-              </div> */}
+              </div>
             </motion.div>
-            <motion.div
+            <motion.div 
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 2, delay: 3.5 }}
               className={classes.textContent}
             >
-              <span>
-                Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam
-                ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa
-                berkumpul bersama kaum mukminin di surga kelak. Aamiin.
-              </span>
+              <span>Maha Suci Allah ‘Azza wa Jalla yang menautkan dua hati dalam ikatan suci pernikahan. Semoga menjadi langkah awal kami bisa berkumpul bersama kaum mukminin di surga kelak. Aamiin.</span>
             </motion.div>
             {/* <div className={classes.countdownContent}>
               <span className={classes.title}>Hitung Mundur Acara</span>
@@ -270,6 +239,6 @@ const Event: React.FC<EventProps> = ({
       </div>
     </motion.div>
   );
-};
+}
 
-export default Event;
+export default Event
