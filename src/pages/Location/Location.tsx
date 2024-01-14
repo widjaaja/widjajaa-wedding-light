@@ -200,7 +200,7 @@ const Location: React.FC<LocationProps> = ({
               transition={{ duration: 2, delay: 2 }}
               onClick={() =>
                 window.open(
-                  "https://maps.app.goo.gl/qyx6JWcGHc4vpPCy5",
+                  "https://maps.app.goo.gl/v9XTTQBAn89RQj1y8",
                   "_blank"
                 )
               }
