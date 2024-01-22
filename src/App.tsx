@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import supabase from "./supabase";
 
-import Home from './pages/Home/Home';
-import Bride from './pages/Bride/Bride';
-import Event from './pages/Event/Event';
-import Location from './pages/Location/Location';
-import Protocol from './pages/Protocol/Protocol';
-import Gift from './pages/Gift/Gift';
-import Wish from './pages/Wish/Wish';
+import Home from "./pages/Home/Home";
+import Bride from "./pages/Bride/Bride";
+import Event from "./pages/Event/Event";
+import Location from "./pages/Location/Location";
+import Protocol from "./pages/Protocol/Protocol";
+import Gift from "./pages/Gift/Gift";
+import Wish from "./pages/Wish/Wish";
 
 import CoverPages from "./components/CoverPages/CoverPages";
 import NavbarPages from "./components/NavbarPages/NavbarPages";
@@ -40,19 +40,19 @@ const AppRouter = () => {
   };
 
   const handleSetActivePages = (message: string) => {
-    setActivePages(message)
+    setActivePages(message);
   };
 
   const handleSetAudio = (item: boolean) => {
-    setAudio(item)
+    setAudio(item);
   };
-  
+
   const handleSetAnimating = () => {
     enterFullscreen();
     setTimeout(() => {
       audioBirdEl.play();
       audioEl.play();
-      setAudio(true)
+      setAudio(true);
       setAnimating(!isAnimating);
     }, 100);
     setTimeout(() => {
@@ -64,9 +64,11 @@ const AppRouter = () => {
     const elem = bodyRef.current;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
+    } else if (elem.mozRequestFullScreen) {
+      // Firefox
       elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+    } else if (elem.webkitRequestFullscreen) {
+      // Chrome, Safari, and Opera
       elem.webkitRequestFullscreen();
     }
   };
@@ -75,9 +77,11 @@ const AppRouter = () => {
     const document: any = window.document;
     if (document.exitFullscreen) {
       document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { // Firefox
+    } else if (document.mozCancelFullScreen) {
+      // Firefox
       document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+    } else if (document.webkitExitFullscreen) {
+      // Chrome, Safari, and Opera
       document.webkitExitFullscreen();
     }
   };
@@ -91,15 +95,14 @@ const AppRouter = () => {
   };
 
   useEffect(() => {
-      isAudio ? audioEl.play() : audioEl.pause();
-    },
-    [isAudio]
-  );
+    isAudio ? audioEl.play() : audioEl.pause();
+    audioBirdEl.pause();
+  }, [isAudio]);
 
   useEffect(() => {
-    audioEl.addEventListener('ended', () => setAudio(false));
+    audioEl.addEventListener("ended", () => setAudio(false));
     return () => {
-      audioEl.removeEventListener('ended', () => setAudio(false));
+      audioEl.removeEventListener("ended", () => setAudio(false));
     };
   }, []);
 
@@ -109,42 +112,132 @@ const AppRouter = () => {
       setIsMobileView(window.innerWidth <= 1024); // Adjust the breakpoint as per your needs
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize(); // Initial check on component mount
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
-      <div ref={bodyRef} className='mainContainer'>
-        <CoverPages name={'name'} onInvitationClick={handleSetAnimating} isAnimate={isAnimating} />
-        {isAnimating &&
-          <div className='content'>
-            <MainComponent activePages={activePages} audio={isAudio} onSetAudio={handleSetAudio} onSetFullScreen={handleFullscreen} onNavSwipe={handleSetSwipePages} />
-            <NavbarPages ref={navRef} onNavClick={handleSetActivePages} activeNav={activePages}/>
+      <div ref={bodyRef} className="mainContainer">
+        <CoverPages
+          name={"name"}
+          onInvitationClick={handleSetAnimating}
+          isAnimate={isAnimating}
+        />
+        {isAnimating && (
+          <div className="content">
+            <MainComponent
+              activePages={activePages}
+              audio={isAudio}
+              onSetAudio={handleSetAudio}
+              onSetFullScreen={handleFullscreen}
+              onNavSwipe={handleSetSwipePages}
+            />
+            <NavbarPages
+              ref={navRef}
+              onNavClick={handleSetActivePages}
+              activeNav={activePages}
+            />
           </div>
-        }
+        )}
       </div>
     </React.Suspense>
   );
 };
 
-const MainComponent: React.FC<AppState> = ({ activePages, audio, onSetAudio, onSetFullScreen, onNavSwipe }) => {
-  switch(activePages) {
+const MainComponent: React.FC<AppState> = ({
+  activePages,
+  audio,
+  onSetAudio,
+  onSetFullScreen,
+  onNavSwipe,
+}) => {
+  switch (activePages) {
+    case "wedding":
+      return (
+        <Home
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
+    case "brides":
+      return (
+        <Bride
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
+    case "event":
+      return (
+        <Event
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
+    case "location":
+      return (
+        <Location
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
+    case "protocol":
+      return (
+        <Protocol
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
+    case "gifts":
+      return (
+        <Gift
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
+    case "wish":
+      return (
+        <Wish
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+        />
+      );
 
-    case "wedding":   return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
-    case "brides":   return <Bride name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
-    case "event": return <Event name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
-    case "location":  return <Location name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
-    case "protocol":  return <Protocol name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
-    case "gifts":  return <Gift name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
-    case "wish":  return <Wish name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen}/>;
-
-    default: return <Home name={'name'} isAudio={audio} onSetAudio={onSetAudio} onSetFullScreen={onSetFullScreen} onNavSwipe={onNavSwipe}/>;
+    default:
+      return (
+        <Home
+          name={"name"}
+          isAudio={audio}
+          onSetAudio={onSetAudio}
+          onSetFullScreen={onSetFullScreen}
+          onNavSwipe={onNavSwipe}
+        />
+      );
   }
-}
+};
 
 export default AppRouter;
